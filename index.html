@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEST VOCACIONAL ITES</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="barra-superior"></div>
+    <div class="container">
+        <h1>Test Vocacional</h1>
+        <form id="start-form" class="card">
+            <div class="form-group">
+                <label for="campus">Entidad:</label>
+                <select id="campus" required>
+                    <option value="">Selecciona un campus</option>
+                    <option value="Campeche">Campeche</option>
+                    <option value="Escarcega">Escárcega</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="turno">Horario Deseado:</label>
+                <select id="turno" required>
+                    <option value="">Selecciona un horario</option>
+                    <option value="Morning">Matutino</option>
+                    <option value="Afternoon">Vespertino</option>
+                </select>
+            </div>
+            <button type="submit" class="btn">Comenzar test</button>
+        </form>
+        <form id="test-form" class="card hidden"></form>
+        <div id="results"></div>
+    </div>
+    <div class="barra-inferior"></div>
+    <script src="script.js"></script>
+</body>
+</html>

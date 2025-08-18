@@ -1,0 +1,122 @@
+const preguntas = [
+    {
+        text: 'Me gusta cuando las cosas funcionan de manera ordenada en un grupo.',
+        carreras: ['Administracion de empresas', 'Comunicacion']
+    },
+    {
+        text: 'Disfruto cuando alguien entiende mejor algo gracias a mí.',
+        carreras: ['Pedagogia']
+    },
+    {
+        text: 'Me emociona probar sabores nuevos y combinar ingredientes.',
+        carreras: ['Artes culinarias']
+    },
+    {
+        text: 'Me interesa comprender cómo funcionan las reglas en la sociedad.',
+        carreras: ['Derecho']
+    },
+    {
+        text: 'Me resulta interesante manejar presupuestos o balances.',
+        carreras: ['Contaduria', 'Administracion de empresas']
+    },
+    {
+        text: 'Me gusta imaginar cómo sería crear una herramienta digital.',
+        carreras: ['Programacion/Webmaster', 'Sistemas computacionales']
+    },
+    {
+        text: 'No me incomoda hablar frente a varias personas.',
+        carreras: ['Comunicacion', 'Derecho']
+    },
+    {
+        text: 'Siento curiosidad por descubrir por qué algo falla y arreglarlo.',
+        carreras: ['Sistemas Computacionales', 'Programacion/Webmaster']
+    },
+    {
+        text: 'Encuentro satisfacción en expresar mis ideas de forma creativa.',
+        carreras: ['Comunicacion', 'Programacion/Webmaster']
+    },
+    {
+        text: 'Soy de los que notan pequeños detalles que otros suelen pasar por alto.',
+        carreras: ['Contaduria', 'Administracion de empresas']
+    },
+    {
+        text: 'Me agrada cuando logro explicar algo y la otra persona lo capta.',
+        carreras: ['Pedagogia']
+    },
+    {
+        text: 'Me interesa conocer cómo se dirigen los proyectos o negocios.',
+        carreras: ['Administracion de empresas']
+    },
+    {
+        text: 'Me motiva trabajar junto a otras personas hacia un mismo objetivo.',
+        carreras: ['Comunicacion', 'Administracion de empresas']
+    },
+    {
+        text: 'Me llama la atención todo lo relacionado con la equidad y lo correcto.',
+        carreras: ['Derecho']
+    },
+    {
+        text: 'Disfruto probar nuevas formas de preparar lo que como.',
+        carreras: ['Artes culinarias']
+    },
+    {
+        text: 'Soy de quienes organizan agendas o listas para cumplir tareas.',
+        carreras: ['Administracion de empresas', 'Contaduria']
+    },
+    {
+        text: 'Me gusta transformar ideas en textos o proyectos creativos.',
+        carreras: ['Comunicacion', 'Programacion/Webmaster']
+    },
+    {
+        text: 'Me intriga estar al día con los avances tecnológicos.',
+        carreras: ['Sistemas Computacionales', 'Programacion/Webmaster']
+    },
+    {
+        text: 'Me gusta acompañar a las personas a encontrar una solución a sus dudas.',
+        carreras: ['Pedagogia', 'Administracion de empresas']
+    },
+    {
+        text: 'Me atrae conocer más sobre cómo se resuelven los conflictos sociales.',
+        carreras: ['Derecho']
+    },
+    {
+        text: 'Disfruto descubrir nuevas funciones en mi computadora.',
+        carreras: ['Sistemas Computacionales', 'Programacion/Webmaster']
+    },
+    {
+        text: 'Me resulta natural llevar un registro claro de las cosas.',
+        carreras: ['Contaduria', 'Administracion de empresas']
+    },
+    {
+        text: 'Me gusta proponer ideas y motivar a otros a participar.',
+        carreras: ['Administracion de empresas', 'Comunicacion']
+    },
+    {
+        text: 'Me interesa cómo las personas aprenden y comparten conocimientos.',
+        carreras: ['Pedagogia']
+    },
+    {
+        text: 'Me gusta cuando puedo descubrir patrones en información o números.',
+        carreras: ['Contaduria', 'Sistemas Computacionales']
+    },
+    {
+        text: 'Me atrae la idea de iniciar proyectos propios y hacerlos crecer.',
+        carreras: ['Administracion de empresas', 'Comunicacion']
+    },
+    {
+        text: 'Me emociona pensar en cómo se diseña un espacio en internet.',
+        carreras: ['Programacion/Webmaster']
+    },
+    {
+        text: 'Me atrae todo lo relacionado con el mundo de los medios.',
+        carreras: ['Comunicacion']
+    },
+    {
+        text: 'Me siento en mi ambiente cuando estoy en una cocina.',
+        carreras: ['Artes culinarias']
+    },
+    {
+        text: 'Me interesa aprender cómo se manejan las cuentas y registros económicos.',
+        carreras: ['Contaduria']
+    }
+];

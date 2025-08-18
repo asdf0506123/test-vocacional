@@ -1,0 +1,203 @@
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+.barra-superior, .barra-inferior {
+    width: 100%;
+    height: 54px;
+    background: #13235B;
+    position: fixed;
+    left: 0;
+    z-index: 100;
+    opacity: 1;        
+    pointer-events: auto; 
+    transition: none;
+}
+.barra-superior {
+    top: 0;
+}
+.barra-inferior {
+    bottom: 0;
+}
+
+.container {
+    max-width: 500px;
+    margin: 74px auto 74px auto; /* Espacio para las barras */
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #06051e;
+    margin-bottom: 24px;
+}
+
+.card {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    padding: 24px 18px;
+    margin-bottom: 24px;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: #13235B;
+}
+
+select, input[type="radio"] {
+    font-size: 1rem;
+    padding: 6px;
+    border-radius: 6px;
+    border: 1px solid #cfd8dc;
+    margin-bottom: 8px;
+}
+
+input[type="radio"] {
+    width: auto;
+    display: inline-block;
+    margin-right: 6px;
+    vertical-align: middle;
+}
+
+.form-group > div label {
+    display: inline-block;
+    margin-right: 18px;
+    margin-bottom: 0;
+    font-weight: normal;
+}
+
+.btn {
+    background: #13235B;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 24px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn:hover {
+    background: #00e1ff;
+    color: #13235B;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Resultados de carreras */
+.career-result {
+    background: #f6f8fa;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    padding: 18px 12px;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    transition: transform 0.18s, background 0.18s;
+}
+.career-result:hover {
+    transform: scale(1.05);
+    background: #00e1ff33;
+}
+
+.career-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.career-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: #e3e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 18px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    overflow: hidden;
+}
+.career-icon img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+}
+
+.career-title {
+    flex: 1;                /* Ocupa el espacio disponible */
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #13235B;
+    margin-right: 8px;
+}
+
+.progress-circle {
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 8px;
+    margin-right: 0;
+    position: relative;
+}
+.progress-circle svg {
+    display: block;
+    width: 64px;
+    height: 64px;
+}
+.progress-circle .circle-bg {
+    stroke: #e3e8f0;
+}
+.progress-circle .circle {
+    transition: stroke-dashoffset 0.5s;
+    stroke-width: 10px;
+}
+
+/* Ajusta el texto dentro del círculo */
+.progress-circle text {
+    font-size: 18px;
+    fill: #13235B;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    dominant-baseline: middle;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .container {
+        max-width: 98vw;
+        margin: 64px auto 64px auto;
+        padding: 8px;
+    }
+    .career-icon {
+        width: 54px;
+        height: 54px;
+    }
+    .career-icon img {
+        width: 32px;
+        height: 32px;
+    }
+    .progress-circle {
+        width: 48px;
+        height: 48px;
+    }
+    .progress-circle svg {
+        width: 24px;
+        height: 24px;
+    }
+}
