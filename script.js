@@ -111,7 +111,7 @@ function showTestForm() {
     const btn = document.createElement('button');
     btn.type = 'submit';
     btn.className = 'btn';
-    btn.textContent = 'See Results';
+    btn.textContent = 'Ver Resultados';
     testForm.appendChild(btn);
     testForm.classList.remove('hidden');
 }
@@ -135,7 +135,7 @@ testForm.addEventListener('submit', function(e) {
 });
 
 function showResults(puntajes, totalRelevante) {
-    resultsDiv.innerHTML = '<h2>Tus mejores oportunidades academicas</h2>';
+    resultsDiv.innerHTML = '<h2 style="color: #fff;">Tus mejores oportunidades academicas</h2>';
     const preguntasPorCarrera = {};
     carreraSeleccionada.forEach(carrera => {
         preguntasPorCarrera[carrera] = preguntas.filter(q => q.carreras.includes(carrera)).length;
