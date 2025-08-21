@@ -7,9 +7,11 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="barra-superior"></div>
-    <div class="container">
+    <header class="barra-superior">
         <h1>Test Vocacional</h1>
+    </header>
+    <main>
+    <div class="container">
         <form id="start-form" class="card">
             <div class="form-group">
                 <label for="campus">Entidad:</label>
@@ -26,13 +28,17 @@
                     <option value="Morning">Matutino</option>
                     <option value="Afternoon">Vespertino</option>
                 </select>
+                <button type="submit" class="btn">Comenzar test</button>
             </div>
-            <button type="submit" class="btn">Comenzar test</button>
         </form>
         <form id="test-form" class="card hidden"></form>
         <div id="results"></div>
     </div>
-    <div class="barra-inferior"></div>
+    </main>
+    <footer class="barra-inferior">
+        <p>© 2023 ITES. Todos los derechos reservados.</p>
+        <p>Desarrollado por The Organizers</p>
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>
