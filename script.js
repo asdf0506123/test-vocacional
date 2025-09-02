@@ -60,7 +60,6 @@ const preguntas = [
     }
 ];
 
-
 const iconosCarrera = {
     'Administracion de empresas': 'img/administracion.png',
     'Pedagogia': 'img/pedagogia.png',
@@ -72,7 +71,6 @@ const iconosCarrera = {
     'Sistemas computacionales': 'img/sistemas.png'
 };
 
-
 const startForm = document.getElementById('start-form');
 const testForm = document.getElementById('test-form');
 const resultsDiv = document.getElementById('results');
@@ -81,68 +79,94 @@ let campusSeleccionado = '';
 let turnoSeleccionado = '';
 let carreraSeleccionada = [];
 
+let preguntasFiltradas = [];
+let preguntaActual = 0;
+
 startForm.addEventListener('submit', function(e) {
     e.preventDefault();
     campusSeleccionado = document.getElementById('campus').value;
     turnoSeleccionado = document.getElementById('turno').value;
     if (!campusSeleccionado || !turnoSeleccionado) return;
     carreraSeleccionada = carreras[campusSeleccionado];
-    showTestForm();
+    prepararPreguntas();
+    showPregunta(0);
 });
 
-function showTestForm() {
+function prepararPreguntas() {
+    preguntasFiltradas = preguntas.filter(q => 
+        q.carreras.some(c => carreraSeleccionada.includes(c))
+    );
+    preguntaActual = 0;
     startForm.classList.add('hidden');
-    testForm.innerHTML = '';
-    resultsDiv.innerHTML = ''; // Limpia resultados previos
-    let qNum = 1;
-    preguntas.forEach((q, idx) => {
-        const relevant = q.carreras.some(c => carreraSeleccionada.includes(c));
-        if (!relevant) return;
-        const div = document.createElement('div');
-        div.className = 'form-group';
-        div.innerHTML = `<label>${qNum}. ${q.text}</label>
-            <div>
-                <label><input type="radio" name="q${idx}" value="1" required> Si</label>
-                <label><input type="radio" name="q${idx}" value="0"> No</label>
-            </div>`;
-        testForm.appendChild(div);
-        qNum++;
-    });
-    const btn = document.createElement('button');
-    btn.type = 'submit';
-    btn.className = 'btn';
-    btn.textContent = 'Ver Resultados';
-    testForm.appendChild(btn);
     testForm.classList.remove('hidden');
+    testForm.innerHTML = '';
+    resultsDiv.innerHTML = '';
 }
 
-testForm.addEventListener('submit', function(e) {
-    e.preventDefault();
+function showPregunta(index) {
+    testForm.innerHTML = '';
+    if (index >= preguntasFiltradas.length) {
+        // Todas respondidas -> mostrar resultados
+        calcularResultados();
+        return;
+    }
+
+    const q = preguntasFiltradas[index];
+    const div = document.createElement('div');
+    div.className = 'form-group';
+    div.innerHTML = `
+        <label>${index + 1}. ${q.text}</label>
+        <div>
+            <label><input type="radio" name="q${index}" value="1" required> Si</label>
+            <label><input type="radio" name="q${index}" value="0"> No</label>
+        </div>
+    `;
+    testForm.appendChild(div);
+
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'btn';
+    btn.textContent = (index === preguntasFiltradas.length - 1) ? 'Ver Resultados' : 'Siguiente';
+    btn.addEventListener('click', () => {
+        const val = testForm.querySelector(`input[name="q${index}"]:checked`);
+        if (!val) {
+            alert("Selecciona una opción antes de continuar");
+            return;
+        }
+        preguntasFiltradas[index].respuesta = val.value;
+        showPregunta(index + 1);
+    });
+    testForm.appendChild(btn);
+}
+
+function calcularResultados() {
     const puntajes = {};
     carreraSeleccionada.forEach(c => puntajes[c] = 0);
-    let totalRelevante = 0;
-    preguntas.forEach((q, idx) => {
-        if (!q.carreras.some(c => carreraSeleccionada.includes(c))) return;
-        const val = testForm.querySelector(`input[name="q${idx}"]:checked`);
-        if (val && val.value === '1') {
+
+    preguntasFiltradas.forEach(q => {
+        if (q.respuesta === "1") {
             q.carreras.forEach(carrera => {
                 if (carreraSeleccionada.includes(carrera)) puntajes[carrera]++;
             });
         }
-        totalRelevante++;
     });
-    showResults(puntajes, totalRelevante);
-});
 
-function showResults(puntajes, totalRelevante) {
+    showResults(puntajes);
+}
+
+function showResults(puntajes) {
     resultsDiv.innerHTML = '<h2 style="color: #fff;">Tus mejores oportunidades academicas</h2>';
+    testForm.classList.add('hidden');
+
     const preguntasPorCarrera = {};
     carreraSeleccionada.forEach(carrera => {
         preguntasPorCarrera[carrera] = preguntas.filter(q => q.carreras.includes(carrera)).length;
     });
+
     const sorted = Object.entries(puntajes)
         .sort((a, b) => b[1] - a[1])
-        .slice(0, 3); // Solo las 3 mejores carreras
+        .slice(0, 3);
+
     sorted.forEach(([carrera, puntaje]) => {
         const totalPreguntasCarrera = preguntasPorCarrera[carrera] || 1;
         const percent = Math.round((puntaje / totalPreguntasCarrera) * 100);
@@ -152,7 +176,7 @@ function showResults(puntajes, totalRelevante) {
         const normalizedPercent = Math.max(0, Math.min(percent, 100));
         const circumference = 2 * Math.PI * radius;
         const offset = circumference * (1 - normalizedPercent / 100);
-        const color = "#00e1ff"; // azul neon
+        const color = "#00e1ff";
 
         const careerDiv = document.createElement('div');
         careerDiv.className = 'career-result';
@@ -195,29 +219,3 @@ function showResults(puntajes, totalRelevante) {
         resultsDiv.appendChild(careerDiv);
     });
 }
-
-function mostrarBarrasScroll() {
-    const superior = document.querySelector('.barra-superior');
-    const inferior = document.querySelector('.barra-inferior');
-    const scrollY = window.scrollY;
-    const windowH = window.innerHeight;
-    const docH = document.body.scrollHeight;
-
-    // Mostrar barra superior solo si está arriba
-    if (scrollY < 10) {
-        superior.classList.add('barra-visible');
-    } else {
-        superior.classList.remove('barra-visible');
-    }
-
-    // Mostrar barra inferior solo si está abajo
-    if (scrollY + windowH > docH - 10) {
-        inferior.classList.add('barra-visible');
-    } else {
-        inferior.classList.remove('barra-visible');
-    }
-}
-
-window.addEventListener('scroll', mostrarBarrasScroll);
-window.addEventListener('resize', mostrarBarrasScroll);
-document.addEventListener('DOMContentLoaded', mostrarBarrasScroll);
