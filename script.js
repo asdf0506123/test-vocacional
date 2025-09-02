@@ -18,46 +18,16 @@ const carreras = {
 };
 
 const preguntas = [ 
-    {
-        text: 'Me gusta cuando las cosas funcionan de manera ordenada en un grupo.',
-        carreras: ['Administracion de empresas', 'Comunicacion']
-    },
-    {
-        text: 'Disfruto cuando alguien entiende mejor algo gracias a mí.',
-        carreras: ['Pedagogia']
-    },
-    {
-        text: 'Me emociona probar sabores nuevos y combinar ingredientes.',
-        carreras: ['Artes culinarias']
-    },
-    {
-        text: 'Me interesa comprender cómo funcionan las reglas en la sociedad.',
-        carreras: ['Derecho']
-    },
-    {
-        text: 'Me resulta interesante manejar presupuestos o balances.',
-        carreras: ['Contaduria', 'Administracion de empresas']
-    },
-    {
-        text: 'Me gusta imaginar cómo sería crear una herramienta digital.',
-        carreras: ['Programacion/Webmaster', 'Sistemas computacionales']
-    },
-    {
-        text: 'No me incomoda hablar frente a varias personas.',
-        carreras: ['Comunicacion', 'Derecho']
-    },
-    {
-        text: 'Siento curiosidad por descubrir por qué algo falla y arreglarlo.',
-        carreras: ['Sistemas Computacionales', 'Programacion/Webmaster']
-    },
-    {
-        text: 'Me gusta acompañar a las personas a encontrar una solución a sus dudas.',
-        carreras: ['Pedagogia', 'Administracion de empresas']
-    },
-    {
-        text: 'Me siento en mi ambiente cuando estoy en una cocina.',
-        carreras: ['Artes culinarias']
-    }
+    { text: 'Me gusta cuando las cosas funcionan de manera ordenada en un grupo.', carreras: ['Administracion de empresas', 'Comunicacion'] },
+    { text: 'Disfruto cuando alguien entiende mejor algo gracias a mí.', carreras: ['Pedagogia'] },
+    { text: 'Me emociona probar sabores nuevos y combinar ingredientes.', carreras: ['Artes culinarias'] },
+    { text: 'Me interesa comprender cómo funcionan las reglas en la sociedad.', carreras: ['Derecho'] },
+    { text: 'Me resulta interesante manejar presupuestos o balances.', carreras: ['Contaduria', 'Administracion de empresas'] },
+    { text: 'Me gusta imaginar cómo sería crear una herramienta digital.', carreras: ['Programacion/Webmaster', 'Sistemas computacionales'] },
+    { text: 'No me incomoda hablar frente a varias personas.', carreras: ['Comunicacion', 'Derecho'] },
+    { text: 'Siento curiosidad por descubrir por qué algo falla y arreglarlo.', carreras: ['Sistemas Computacionales', 'Programacion/Webmaster'] },
+    { text: 'Me gusta acompañar a las personas a encontrar una solución a sus dudas.', carreras: ['Pedagogia', 'Administracion de empresas'] },
+    { text: 'Me siento en mi ambiente cuando estoy en una cocina.', carreras: ['Artes culinarias'] }
 ];
 
 const iconosCarrera = {
@@ -82,6 +52,17 @@ let carreraSeleccionada = [];
 let preguntasFiltradas = [];
 let preguntaActual = 0;
 
+// Crear barra de progreso
+const progressBar = document.createElement("div");
+progressBar.className = "progress-bar-container hidden";
+progressBar.innerHTML = `
+    <div class="progress-text">0%</div>
+    <div class="progress">
+        <div class="progress-fill"></div>
+    </div>
+`;
+document.querySelector(".container").insertBefore(progressBar, testForm);
+
 startForm.addEventListener('submit', function(e) {
     e.preventDefault();
     campusSeleccionado = document.getElementById('campus').value;
@@ -101,12 +82,14 @@ function prepararPreguntas() {
     testForm.classList.remove('hidden');
     testForm.innerHTML = '';
     resultsDiv.innerHTML = '';
+
+    progressBar.classList.remove("hidden");
+    actualizarProgreso();
 }
 
 function showPregunta(index) {
     testForm.innerHTML = '';
     if (index >= preguntasFiltradas.length) {
-        // Todas respondidas -> mostrar resultados
         calcularResultados();
         return;
     }
@@ -134,9 +117,17 @@ function showPregunta(index) {
             return;
         }
         preguntasFiltradas[index].respuesta = val.value;
+        preguntaActual = index + 1;
+        actualizarProgreso();
         showPregunta(index + 1);
     });
     testForm.appendChild(btn);
+}
+
+function actualizarProgreso() {
+    const percent = Math.round((preguntaActual / preguntasFiltradas.length) * 100);
+    progressBar.querySelector(".progress-text").textContent = `${percent}%`;
+    progressBar.querySelector(".progress-fill").style.width = `${percent}%`;
 }
 
 function calcularResultados() {
@@ -157,6 +148,7 @@ function calcularResultados() {
 function showResults(puntajes) {
     resultsDiv.innerHTML = '<h2 style="color: #fff;">Tus mejores oportunidades academicas</h2>';
     testForm.classList.add('hidden');
+    progressBar.classList.add("hidden");
 
     const preguntasPorCarrera = {};
     carreraSeleccionada.forEach(carrera => {
@@ -218,4 +210,30 @@ function showResults(puntajes) {
         `;
         resultsDiv.appendChild(careerDiv);
     });
+
+    lanzarConfeti();
+}
+
+/* 🎉 Confeti desde esquinas */
+function lanzarConfeti() {
+    const duration = 3 * 1000;
+    const end = Date.now() + duration;
+
+    (function frame() {
+        confetti({
+            particleCount: 5,
+            angle: 60,
+            spread: 55,
+            origin: { x: 0 }
+        });
+        confetti({
+            particleCount: 5,
+            angle: 120,
+            spread: 55,
+            origin: { x: 1 }
+        });
+        if (Date.now() < end) {
+            requestAnimationFrame(frame);
+        }
+    })();
 }
