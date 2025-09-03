@@ -24,7 +24,7 @@ const preguntas = [
     { text: 'Me interesa comprender cómo funcionan las reglas en la sociedad.', carreras: ['Derecho'] },
     { text: 'Me resulta interesante manejar presupuestos o balances.', carreras: ['Contaduria', 'Administracion de empresas'] },
     { text: 'Me gusta imaginar cómo sería crear una herramienta digital.', carreras: ['Programacion/Webmaster', 'Sistemas computacionales'] },
-    { text: 'No me incomoda hablar frente a varias personas.', carreras: ['Comunicacion', 'Derecho'] },
+    { text: 'Me resulta comodo hablar frente a varias personas.', carreras: ['Comunicacion', 'Derecho'] },
     { text: 'Siento curiosidad por descubrir por qué algo falla y arreglarlo.', carreras: ['Sistemas Computacionales', 'Programacion/Webmaster'] },
     { text: 'Me gusta acompañar a las personas a encontrar una solución a sus dudas.', carreras: ['Pedagogia', 'Administracion de empresas'] },
     { text: 'Me siento en mi ambiente cuando estoy en una cocina.', carreras: ['Artes culinarias'] }
