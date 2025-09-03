@@ -239,7 +239,7 @@ function lanzarConfeti() {
 }
 
 function showResults(puntajes) {
-    resultsDiv.innerHTML = '<h2 style="color: #fff;">Tus mejores oportunidades academicas</h2>';
+    resultsDiv.innerHTML = '<h2 style="color: #fff;">Las carreras que más coinciden con tus intereses y habilidades son:</h2>';
     testForm.classList.add('hidden');
     progressBar.classList.add("hidden");
 
