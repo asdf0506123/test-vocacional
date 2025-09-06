@@ -15,7 +15,7 @@ body {
 
 /* MAIN */
 main {
-  background-image: url("img/escuela.jpg");
+  background-image: url("src/img/escuela.jpg");
   background-position: center;
   background-size: cover;
   position: relative;

@@ -31,14 +31,14 @@ const preguntas = [
 ];
 
 const iconosCarrera = {
-    'Administracion de empresas': 'img/administracion.png',
-    'Pedagogia': 'img/pedagogia.png',
-    'Artes culinarias': 'img/artes.png',
-    'Derecho': 'img/derecho.png',
-    'Contaduria': 'img/contaduria.png',
-    'Programacion/Webmaster': 'img/programacion.png',
-    'Comunicacion': 'img/comunicacion.png',
-    'Sistemas computacionales': 'img/sistemas.png'
+    'Administracion de empresas': '../src/img/administracion.png',
+    'Pedagogia': '../src/img/pedagogia.png',
+    'Artes culinarias': '../src/img/artes.png',
+    'Derecho': '../src/img/derecho.png',
+    'Contaduria': '../src/img/contaduria.png',
+    'Programacion/Webmaster': '../src/img/programacion.png',
+    'Comunicacion': '../src/img/comunicacion.png',
+    'Sistemas computacionales': '../src/img/sistemas.png'
 };
 
 const startForm = document.getElementById('start-form');
@@ -162,7 +162,7 @@ function showResults(puntajes) {
     sorted.forEach(([carrera, puntaje]) => {
         const totalPreguntasCarrera = preguntasPorCarrera[carrera] || 1;
         const percent = Math.round((puntaje / totalPreguntasCarrera) * 100);
-        const iconSrc = iconosCarrera[carrera] || 'img/default.png';
+        const iconSrc = iconosCarrera[carrera] || '../src/img/default.png';
         const radius = 28;
         const stroke = 6;
         const normalizedPercent = Math.max(0, Math.min(percent, 100));
