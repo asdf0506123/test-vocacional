@@ -31,14 +31,14 @@ const preguntas = [
 ];
 
 const iconosCarrera = {
-    'Administracion de empresas': '../src/img/administracion.png',
-    'Pedagogia': '../src/img/pedagogia.png',
-    'Artes culinarias': '../src/img/artes.png',
-    'Derecho': '../src/img/derecho.png',
-    'Contaduria': '../src/img/contaduria.png',
-    'Programacion/Webmaster': '../src/img/programacion.png',
-    'Comunicacion': '../src/img/comunicacion.png',
-    'Sistemas computacionales': '../src/img/sistemas.png'
+    'Administracion de empresas': 'src/img/administracion.png',
+    'Pedagogia': 'src/img/pedagogia.png',
+    'Artes culinarias': 'src/img/artes.png',
+    'Derecho': 'src/img/derecho.png',
+    'Contaduria': 'src/img/contaduria.png',
+    'Programacion/Webmaster': 'src/img/programacion.png',
+    'Comunicacion': 'src/img/comunicacion.png',
+    'Sistemas computacionales': 'src/img/sistemas.png'
 };
 
 const startForm = document.getElementById('start-form');
@@ -211,32 +211,8 @@ function showResults(puntajes) {
         resultsDiv.appendChild(careerDiv);
     });
 
-    lanzarConfeti();
 }
 
-/* 🎉 Confeti desde esquinas */
-function lanzarConfeti() {
-    const duration = 3 * 1000;
-    const end = Date.now() + duration;
-
-    (function frame() {
-        confetti({
-            particleCount: 5,
-            angle: 60,
-            spread: 55,
-            origin: { x: 0 }
-        });
-        confetti({
-            particleCount: 5,
-            angle: 120,
-            spread: 55,
-            origin: { x: 1 }
-        });
-        if (Date.now() < end) {
-            requestAnimationFrame(frame);
-        }
-    })();
-}
 
 function showResults(puntajes) {
     resultsDiv.innerHTML = '<h2 style="color: #fff;">Las carreras que más coinciden con tus intereses son:</h2>';
@@ -255,7 +231,7 @@ function showResults(puntajes) {
     sorted.forEach(([carrera, puntaje]) => {
         const totalPreguntasCarrera = preguntasPorCarrera[carrera] || 1;
         const percent = Math.round((puntaje / totalPreguntasCarrera) * 100);
-        const iconSrc = iconosCarrera[carrera] || 'img/default.png';
+        const iconSrc = iconosCarrera[carrera] || '../src/img/default.png';
         const radius = 28;
         const stroke = 6;
         const normalizedPercent = Math.max(0, Math.min(percent, 100));
@@ -304,7 +280,7 @@ function showResults(puntajes) {
         resultsDiv.appendChild(careerDiv);
     });
 
-    // 🎉 Botón para regresar al inicio
+    // Botón para regresar al inicio
     const backBtn = document.createElement("button");
     backBtn.textContent = "Regresar al inicio";
     backBtn.className = "btn";
@@ -319,5 +295,4 @@ function showResults(puntajes) {
     });
     resultsDiv.appendChild(backBtn);
 
-    lanzarConfeti();
 }

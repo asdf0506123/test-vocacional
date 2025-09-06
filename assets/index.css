@@ -15,7 +15,7 @@ body {
 
 /* MAIN */
 main {
-  background-image: url("src/img/escuela.jpg");
+  background-image: url("../src/img/escuela.jpg");
   background-position: center;
   background-size: cover;
   position: relative;
@@ -79,7 +79,6 @@ footer.barra-inferior {
   margin: 100px auto 100px auto; 
   padding: 0; 
   text-align: left;
-  display: none;
 }
 
 /* TITULOS */
