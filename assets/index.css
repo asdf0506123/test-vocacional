@@ -1,25 +1,24 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
 body {
   font-family: "Segoe UI", Arial, sans-serif;
   background: #fff;
-  margin: 0;
-  padding: 0;
   color: #333;
-  box-sizing: border-box;
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-
-/* MAIN */
 main {
   background-image: url("../src/img/escuela.jpg");
   background-position: center;
   background-size: cover;
   position: relative;
-  min-height: 100vh;
+  min-height: 90dvh;
   padding: 60px 20px;
   overflow: hidden;
   display: flex;
@@ -27,7 +26,6 @@ main {
   justify-content: center;
 }
 
-/* Filtro en la imagen */
 main::before {
   content: "";
   position: absolute;
@@ -45,17 +43,17 @@ main > * {
   z-index: 1;
 }
 
-/* BARRAS */
-.barra-superior,
-.barra-inferior {
+/*Header y Footer*/
+header,
+footer {
   width: 100%;
   background: #13235b;
   color: #fff;
   opacity: 0.95;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
-.barra-superior {
+header {
   height: 80px;
   display: flex;
   justify-content: center;
@@ -65,27 +63,93 @@ main > * {
   letter-spacing: 1px;
 }
 
-footer.barra-inferior {
-  height: 60px; 
+footer {
+  height: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 0.9rem;
-  padding: 0 10px; 
+  padding: 0 10px;
+  flex-wrap: wrap;
 }
 
-.container {
-  max-width: 520px;
-  margin: 100px auto 100px auto; 
-  padding: 0; 
-  text-align: left;
+footer p{
+  text-align: center;
 }
+
+/*Formulario de registro*/
+.registro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  background-color: #fff;
+  padding: 2rem 1rem;
+  border-radius: 10px;
+  width: 360px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+}
+
+.registro h2 {
+  color: #333;
+  font-size: 1.6rem;
+  text-align: center;
+}
+
+.registro .container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  padding: 0 13px;
+  width: 100%;
+}
+
+.registro .div-inputs input {
+  height: 40px;
+  background-color: #eef3f7;
+  border: 1px solid #cfdce7;
+  width: 100%;
+  font-size: 15px;
+  padding: 0 10px;
+  color: #2a3d66;
+  border-radius: 9px;
+}
+
+.registro button{
+  background-color: #13235b;
+  color: #fff;
+  border: none;
+  padding: 14px 0;
+  font-size: 15px;
+  cursor: pointer;
+  border-radius: 10px;
+  margin-top: 7px;
+  transition: 0.3s ease-out;
+}
+
+.registro button:hover{
+  background-color: #182e7c;
+}
+
+.registro .div-inputs{
+  position: relative;
+}
+
+.registro .div-inputs i{
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  color: #444;
+}
+
 
 /* TITULOS */
 h1 {
   text-align: center;
   color: #ffffff;
-  text-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   font-size: 2rem;
 }
 
@@ -93,14 +157,15 @@ h1 {
 .card {
   background: #fff;
   border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   padding: 26px 20px;
   margin-bottom: 26px;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
+  display: none;
 }
 .card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
 }
 
 /* FORM */
@@ -173,7 +238,7 @@ input[type="radio"] {
 .career-result {
   background: #f6f8fa;
   border-radius: 16px;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
   padding: 20px 14px;
   margin-bottom: 20px;
   display: flex;
@@ -274,16 +339,12 @@ input[type="radio"] {
   background: #00e1ff;
   transition: width 0.4s ease;
 }
-.hidden { display: none; }
+.hidden {
+  display: none;
+}
 
-
-/* RESPONSIVE */
+/* Responsividad */
 @media (max-width: 600px) {
-  .container {
-    max-width: 96vw;
-    margin: 70px auto 70px auto;
-    padding: 0;
-  }
   .career-icon {
     width: 54px;
     height: 54px;
@@ -300,4 +361,37 @@ input[type="radio"] {
     width: 48px;
     height: 48px;
   }
+
+  h1{
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px){
+  h1{
+    font-size: 1.3rem;
+  }
+
+  .registro{
+    width: 300px;
+  }
+
+  .registro h2{
+    font-size: 1.1rem;
+  }
+
+  .registro .div-inputs input{
+    font-size: 14px;
+    height: 36px;
+  }
+
+  .registro button{
+    font-size: 14px;
+    padding: 8px 0;
+  }
+
+  footer p{
+    font-size: 14px;
+  }
+
 }
