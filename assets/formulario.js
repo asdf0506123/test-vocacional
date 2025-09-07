@@ -1,5 +1,6 @@
 const form = document.getElementById("registro");
 const submitButton = document.getElementById("registrar-btn");
+const testInicio = document.getElementById("start-form");
 
 form.addEventListener("submit", async function (e) {
 e.preventDefault();
