@@ -1,58 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="assets/index.css" />
-    <script
-      src="https://kit.fontawesome.com/e522357059.js"
-      crossorigin="anonymous"
-    ></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TEST VOCACIONAL ITES</title>
-  </head>
-  <body>
-    <!--Encabezado-->
-    <header>
-      <h1>Test de Orientación Vocacional</h1>
+    <link rel="stylesheet" href="assets/index.css">
+</head>
+<body>
+    <header class="barra-superior">
+        <h1>Test de Orientacion Vocacional</h1>
     </header>
-
     <main>
-        
-      <form id="start-form" class="card" style="display: block;">
-        <div class="form-group">
-          <label for="campus">Entidad:</label>
-          <select id="campus" required>
-            <option value="">Selecciona una entidad</option>
-            <option value="Campeche">Campeche</option>
-            <option value="Escarcega">Escárcega</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="turno">Horario Deseado:</label>
-          <select id="turno" required>
-            <option value="">Selecciona un horario</option>
-            <option value="Morning">Matutino</option>
-            <option value="Afternoon">Vespertino</option>
-            <option value="Morning">Mixto</option>
-          </select>
-          <button type="submit" class="btn">Comenzar test</button>
-        </div>
-      </form>
-
-      <form id="test-form" class="card hidden"></form>
-
-      <div id="results"></div>
+    <div class="container">
+        <form id="start-form" class="card" style="display: block;">
+            <div class="form-group">
+                <label for="campus">Entidad:</label>
+                <select id="campus" required>
+                    <option value="">Selecciona una entidad</option>
+                    <option value="Campeche">Campeche</option>
+                    <option value="Escarcega">Escárcega</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="turno">Horario Deseado:</label>
+                <select id="turno" required>
+                    <option value="">Selecciona un horario</option>
+                    <option value="Morning">Matutino</option>
+                    <option value="Afternoon">Vespertino</option>
+                    <option value="Morning">Mixto</option>
+                </select>
+                <button type="submit" class="btn">Comenzar test</button>
+            </div>
+        </form>
+        <form id="test-form" class="card hidden"></form>
+        <div id="results"></div>
+    </div>
     </main>
-
-    <!--Footer-->
-    <footer>
-      <p>
-        © 2025 ITES. Todos los derechos reservados. Desarrollado por The
-        Organizers
-      </p>
+    <footer class="barra-inferior">
+        <p>© 2025 ITES. Todos los derechos reservados. Desarrollado por The Organizers </p>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script src="assets/index.js"></script>
-  </body>
+
+</body>
 </html>
