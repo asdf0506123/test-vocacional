@@ -139,7 +139,7 @@ function showPregunta(index) {
     // Crear contenedor de botones
     const buttonContainer = document.createElement('div');
     buttonContainer.className = 'button-container';
-    buttonContainer.style.cssText = 'display: flex; gap: 10px; margin-top: 20px; justify-content: left;';
+    buttonContainer.style.cssText = 'display: flex; gap: 10px; margin-top: 20px; justify-content: center;';
 
     // Botón Anterior (solo si no es la primera pregunta)
     if (index > 0) {
@@ -147,7 +147,7 @@ function showPregunta(index) {
         prevBtn.type = 'button';
         prevBtn.className = 'btn btn-secondary';
         prevBtn.textContent = 'Anterior';
-        prevBtn.style.cssText = 'background-color: #003a6dff; border-color: #001a31ff;';
+        prevBtn.style.cssText = 'background-color: #6c757d; border-color: #6c757d;';
         prevBtn.addEventListener('click', () => {
             showPregunta(index - 1);
         });
@@ -203,7 +203,7 @@ function calcularResultados() {
 }
 
 function showResults(puntajes) {
-    resultsDiv.innerHTML = '<h2 style="color: #fff;">Tus mejores oportunidades académicas: </h2>';
+    resultsDiv.innerHTML = '<h2 style="color: #fff;">Tus mejores oportunidades académicas</h2>';
     testForm.classList.add('hidden');
     progressBar.classList.add("hidden");
 
@@ -225,7 +225,7 @@ function showResults(puntajes) {
         const normalizedPercent = Math.max(0, Math.min(percent, 100));
         const circumference = 2 * Math.PI * radius;
         const offset = circumference * (1 - normalizedPercent / 100);
-        const color = "#012258ff";
+        const color = "#00e1ff";
 
         const careerDiv = document.createElement('div');
         careerDiv.className = 'career-result';
@@ -276,7 +276,7 @@ function showResults(puntajes) {
     const backToQuestionsBtn = document.createElement("button");
     backToQuestionsBtn.textContent = "Revisar respuestas";
     backToQuestionsBtn.className = "btn btn-secondary";
-    backToQuestionsBtn.style.cssText = 'background-color: #003a6dff; border-color: #001a31ff;';
+    backToQuestionsBtn.style.cssText = 'background-color: #6c757d; border-color: #6c757d;';
     backToQuestionsBtn.addEventListener("click", () => {
         resultsDiv.innerHTML = "";
         testForm.classList.remove("hidden");
@@ -301,4 +301,108 @@ function showResults(puntajes) {
     buttonContainer.appendChild(backBtn);
 
     resultsDiv.appendChild(buttonContainer);
+}
+
+async function enviarResultadosAGoogleSheets(resultadosData) {
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz1ulYy0Gd9o8Sap19XFBCK0i3Sxyz89IkDo6B-Xvbv6RgN2KcMrYmEEhiECiXGxJsA/exec'; // ⚠️ REEMPLAZAR CON TU URL REAL
+    
+    if (SCRIPT_URL === 'Thttps://script.google.com/macros/s/AKfycbz1ulYy0Gd9o8Sap19XFBCK0i3Sxyz89IkDo6B-Xvbv6RgN2KcMrYmEEhiECiXGxJsA/exec') {
+        console.error('❌ URL del script no configurada');
+        mostrarMensajeError('URL del script no configurada. Revisa la configuración.');
+        return;
+    }
+    
+
+    const dataToSend = {
+        tipo: 'testVocacional',
+        campus: resultadosData.campus,
+        turno: resultadosData.turno,
+        resultados: resultadosData.resultados
+    };
+    
+    console.log('Enviando a Google Sheets:', dataToSend);
+    console.log('URL del script:', SCRIPT_URL);
+    
+    try {
+       
+        const xhr = new XMLHttpRequest();
+        
+        return new Promise((resolve, reject) => {
+            xhr.open('POST', SCRIPT_URL, true);
+            xhr.setRequestHeader('Content-Type', 'text/plain'); 
+            
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        try {
+                            const result = JSON.parse(xhr.responseText);
+                            console.log('Respuesta del servidor:', result);
+                            
+                            if (result.status === 'success') {
+                                console.log('✅ Resultados guardados exitosamente');
+                                mostrarMensajeExito();
+                                resolve(result);
+                            } else {
+                                console.error('❌ Error al guardar:', result.message);
+                                mostrarMensajeError('Error al guardar: ' + result.message);
+                                reject(new Error(result.message));
+                            }
+                        } catch (parseError) {
+                            console.error('❌ Error parsing response:', parseError);
+                            mostrarMensajeError('Error en la respuesta del servidor');
+                            reject(parseError);
+                        }
+                    } else {
+                        console.error('❌ HTTP Error:', xhr.status, xhr.statusText);
+                        mostrarMensajeError(`Error HTTP: ${xhr.status}`);
+                        reject(new Error(`HTTP ${xhr.status}: ${xhr.statusText}`));
+                    }
+                }
+            };
+            
+            xhr.onerror = function() {
+                console.error('❌ Error de red');
+                mostrarMensajeError('Error de conexión a Google Sheets');
+                reject(new Error('Network error'));
+            };
+            
+            
+            xhr.send(JSON.stringify(dataToSend));
+        });
+        
+    } catch (error) {
+        console.error('❌ Error inesperado:', error);
+        mostrarMensajeError('Error inesperado: ' + error.message);
+    }
+}
+
+
+function mostrarMensajeExito() {
+    const mensaje = document.createElement('div');
+    mensaje.innerHTML = '<p style="color: #00e1ff; text-align: center; margin-top: 10px;">✅ Resultados guardados correctamente</p>';
+    mensaje.id = 'mensaje-resultado';
+    resultsDiv.appendChild(mensaje);
+    
+
+    setTimeout(() => {
+        const mensajeExistente = document.getElementById('mensaje-resultado');
+        if (mensajeExistente) {
+            mensajeExistente.remove();
+        }
+    }, 5000);
+}
+
+
+function mostrarMensajeError(errorMsg) {
+    const mensaje = document.createElement('div');
+    mensaje.innerHTML = `<p style="color: #ff6b6b; text-align: center; margin-top: 10px;">❌ ${errorMsg}</p>`;
+    mensaje.id = 'mensaje-resultado';
+    resultsDiv.appendChild(mensaje);
+
+    setTimeout(() => {
+        const mensajeExistente = document.getElementById('mensaje-resultado');
+        if (mensajeExistente) {
+            mensajeExistente.remove();
+        }
+    }, 8000);
 }
