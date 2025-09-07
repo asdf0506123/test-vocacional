@@ -33,6 +33,7 @@ try {
 
     if (data.status === "success") {
     form.reset();
+    window.location.href = "testVocacional.html";
     }
 } catch (error) {
     console.error("Error:", error);
