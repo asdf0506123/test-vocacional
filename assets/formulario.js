@@ -18,9 +18,7 @@ try {
     }
 
     //URL al script del API 
-    const scriptURL = "https://script.google.com/macros/s/AKfycbz1ulYy0Gd9o8Sap19XFBCK0i3Sxyz89IkDo6B-Xvbv6RgN2KcMrYmEEhiECiXGxJsA/exec";
-
-    const response = await fetch(scriptURL, {
+    const scriptURL = "https://script.google.com/macros/s/AKfycbz1ulYy0Gd9o8Sap19XFBCK0i3Sxyz89IkDo6B-Xvbv6RgN2KcMrYmEEhiECiXGxJsA/exec";    const response = await fetch(scriptURL, {
     redirect: "follow",
     method: "POST",
     body: JSON.stringify(formDataObj),
