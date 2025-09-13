@@ -8,82 +8,111 @@
 </head>
 <body>
     <header class="barra-superior">
-        <h1>Test de Orientación Vocacional</h1>
-    </header>
-    <main>
+    <h1>Test de Orientación Vocacional</h1>
+  </header>
+
+  <main>
     <div class="container">
-        <form id="start-form" class="card">
-            <div class="form-group">
-                <label for="campus">Entidad:</label>
-                <select id="campus" name="Campus">
-                    <option value="">Selecciona una entidad</option>
-                    <option value="Campeche">Campeche</option>
-                    <option value="Escarcega">Escárcega</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="turno">Horario Deseado:</label>
-                <select id="turno" required>
-                    <option value="">Selecciona un horario</option>
-                    <option value="Morning" name="Turno">Matutino</option>
-                    <option value="Afternoon" name="Turno">Vespertino</option>
-                    <option value="Morning" name="Turno">Sabatino</option>
-                </select>
-                <button type="submit" id="btn" class="btn">Comenzar test</button>
-            </div>
-        </form>
-        <form id="test-form" class="card hidden"></form>
-        <div id="results"></div>
+
+      <!-- Formulario de inicio -->
+      <form id="start-form" class="card">
+        <div class="form-group">
+          <label for="campus">Entidad:</label>
+          <select id="campus" name="Campus" required>
+            <option value="">Selecciona una entidad</option>
+            <option value="Campeche">Campeche</option>
+            <option value="Escarcega">Escárcega</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="turno">Horario Deseado:</label>
+          <select id="turno" name="Turno" required>
+            <option value="">Selecciona un horario</option>
+            <option value="Morning">Matutino</option>
+            <option value="Afternoon">Vespertino</option>
+            <option value="Morning">Sabatino</option>
+          </select>
+          <button type="submit" id="btn" class="btn">Comenzar test</button>
+        </div>
+      </form>
+
+      <!-- Formulario del test ya escrito en HTML -->
+      <form id="test-form" class="card hidden">
+        <h2>Responde las siguientes preguntas:</h2>
+
+        <div class="pregunta">
+          <p>1. Me gusta cuando las cosas funcionan de manera ordenada en un grupo.</p>
+          <label><input type="radio" name="q1" value="1"> Sí</label>
+          <label><input type="radio" name="q1" value="0"> No</label>
+        </div>
+
+        <div class="pregunta">
+          <p>2. Disfruto cuando alguien entiende mejor algo gracias a mí.</p>
+          <label><input type="radio" name="q2" value="1"> Sí</label>
+          <label><input type="radio" name="q2" value="0"> No</label>
+        </div>
+
+        <div class="pregunta">
+          <p>3. Me emociona probar sabores nuevos y combinar ingredientes.</p>
+          <label><input type="radio" name="q3" value="1"> Sí</label>
+          <label><input type="radio" name="q3" value="0"> No</label>
+        </div>
+
+        <div class="pregunta">
+          <p>4. Me interesa comprender cómo funcionan las reglas en la sociedad.</p>
+          <label><input type="radio" name="q4" value="1"> Sí</label>
+          <label><input type="radio" name="q4" value="0"> No</label>
+        </div>
+
+        <div class="pregunta">
+          <p>5. Me resulta interesante manejar presupuestos o balances.</p>
+          <label><input type="radio" name="q5" value="1"> Sí</label>
+          <label><input type="radio" name="q5" value="0"> No</label>
+        </div>
+
+        <div class="pregunta">
+          <p>6. Me gusta imaginar cómo sería crear una herramienta digital.</p>
+          <label><input type="radio" name="q6" value="1"> Sí</label>
+          <label><input type="radio" name="q6" value="0"> No</label>
+        </div>
+
+        <div class="pregunta">
+          <p>7. No me incomoda hablar frente a varias personas.</p>
+          <label><input type="radio" name="q7" value="1"> Sí</label>
+          <label><input type="radio" name="q7" value="0"> No</label>
+        </div>
+
+        <div class="pregunta">
+          <p>8. Siento curiosidad por descubrir por qué algo falla y arreglarlo.</p>
+          <label><input type="radio" name="q8" value="1"> Sí</label>
+          <label><input type="radio" name="q8" value="0"> No</label>
+        </div>
+
+        <div class="pregunta">
+          <p>9. Me gusta acompañar a las personas a encontrar una solución a sus dudas.</p>
+          <label><input type="radio" name="q9" value="1"> Sí</label>
+          <label><input type="radio" name="q9" value="0"> No</label>
+        </div>
+
+        <div class="pregunta">
+          <p>10. Me siento en mi ambiente cuando estoy en una cocina.</p>
+          <label><input type="radio" name="q10" value="1"> Sí</label>
+          <label><input type="radio" name="q10" value="0"> No</label>
+        </div>
+
+        <button type="submit" class="btn">Ver Resultados</button>
+      </form>
+
+      <!-- Resultados -->
+      <div id="results"></div>
     </div>
-    </main>
-    <footer class="barra-inferior">
-        <p>© 2025 ITES. Todos los derechos reservados. Desarrollado por The Organizers</p>
-    </footer>
-    <script src="assets/testVocacional.js"></script>
+  </main>
 
-     <script>
-const form = document.getElementById("start-form");
-const submitButton = document.getElementById("btn");
+  <footer class="barra-inferior">
+    <p>© 2025 ITES. Todos los derechos reservados. Desarrollado por The Organizers</p>
+  </footer>
 
-form.addEventListener("submit", async function (e) {
-e.preventDefault();
-
-submitButton.disabled = true;
-submitButton.textContent = "Enviando...";
-
-try {
-    const formData = new FormData(this);
-    const formDataObj = {};
-
-    
-    for (let [key, value] of formData.entries()) {
-    formDataObj[key] = value;
-    }
-
-    //URL al script del API 
-    const scriptURL = "https://script.google.com/macros/s/AKfycbz1ulYy0Gd9o8Sap19XFBCK0i3Sxyz89IkDo6B-Xvbv6RgN2KcMrYmEEhiECiXGxJsA/exec";    const response = await fetch(scriptURL, {
-    redirect: "follow",
-    method: "POST",
-    body: JSON.stringify(formDataObj),
-    headers: {
-        "Content-Type": "text/plain;charset=utf-8",
-    },
-    });
-
-    const data = await response.json();
-
-    if (data.status === "success") {
-    form.reset();
-    }
-} catch (error) {
-    console.error("Error:", error);
-    alert("Error: " + error.message);
-} finally {
-    submitButton.disabled = false;
-    submitButton.textContent = "Registrarse";
-}
-});
-    </script>
+<script src="assets/testVocacional.js"></script>
 
 </body>
 </html>
