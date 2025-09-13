@@ -30,6 +30,42 @@ const carrerasPorCampus = {
   ]
 };
 
+// Información detallada de cada carrera
+const informacionCarreras = {
+  'Administracion de empresas': {
+    descripcion: 'Forma líderes capaces de dirigir organizaciones, tomar decisiones estratégicas y gestionar recursos humanos y financieros de manera eficiente.',
+    pdf: 'src/pdfs/administracion-empresas.pdf'
+  },
+  'Comunicacion': {
+    descripcion: 'Desarrolla profesionales en medios, marketing digital, relaciones públicas y creación de contenido para diversas plataformas.',
+    pdf: 'src/pdfs/comunicacion.pdf'
+  },
+  'Pedagogia': {
+    descripcion: 'Prepara educadores comprometidos con la formación integral, diseño curricular y metodologías innovadoras de enseñanza-aprendizaje.',
+    pdf: 'src/pdfs/pedagogia.pdf'
+  },
+  'Artes culinarias': {
+    descripcion: 'Forma chefs profesionales con técnicas gastronómicas avanzadas, administración de cocina y creación de experiencias culinarias únicas.',
+    pdf: 'src/pdfs/artes-culinarias.pdf'
+  },
+  'Derecho': {
+    descripcion: 'Prepara juristas íntegros con sólidos conocimientos legales para ejercer en diversas áreas del derecho y la justicia.',
+    pdf: 'src/pdfs/derecho.pdf'
+  },
+  'Contaduria': {
+    descripcion: 'Desarrolla expertos en finanzas, auditoría, fiscalización y análisis contable para la toma de decisiones empresariales.',
+    pdf: 'src/pdfs/contaduria.pdf'
+  },
+  'Programacion/Webmaster': {
+    descripcion: 'Forma desarrolladores web especializados en programación, diseño de interfaces y gestión de proyectos digitales.',
+    pdf: 'src/pdfs/programacion-webmaster.pdf'
+  },
+  'Sistemas computacionales': {
+    descripcion: 'Prepara ingenieros en sistemas capaces de desarrollar software, administrar redes y solucionar problemas tecnológicos complejos.',
+    pdf: 'src/pdfs/sistemas-computacionales.pdf'
+  }
+};
+
 const todasLasPreguntas = [
   { 
     id: 1,
@@ -218,8 +254,6 @@ const datosCompletos = {
   fecha: new Date().toLocaleString()
 };
 
-
-
   // Enviar TODOS los datos JUNTOS a Google Sheets
   try {
     const scriptURL = "https://script.google.com/macros/s/AKfycbz1ulYy0Gd9o8Sap19XFBCK0i3Sxyz89IkDo6B-Xvbv6RgN2KcMrYmEEhiECiXGxJsA/exec";
@@ -257,8 +291,7 @@ const datosCompletos = {
   let resultadosHTML = `
     <div class="card">
       <h2>Tus Top 3 Carreras Recomendadas</h2>
-      <p><strong>Campus:</strong> ${campusSeleccionado}</p>
-      <p><strong>Estudiante:</strong> ${datosRegistro.nombre || 'No especificado'}</p>
+      <p>Este test es solo una orientación vocacional. Para más información o asesoría personalizada, acude al Área de Vinculación.</p>
       <hr>
       <div class="top-results">
   `;
@@ -273,23 +306,41 @@ const datosCompletos = {
     const offset = circumference * (1 - normalizedPercent / 100);
     const color = obtenerColorPorRanking(index);
     
+    // Obtener información de la carrera
+    const infoCarrera = informacionCarreras[resultado.carrera];
+    const descripcion = infoCarrera ? infoCarrera.descripcion : 'Descripción no disponible';
+    const pdfUrl = infoCarrera ? infoCarrera.pdf : '#';
+    
     resultadosHTML += `
       <div class="career-result top-${index + 1}">
         <div class="ranking-medal">${medallaColor}</div>
-        <div class="career-info">
+        
+        <!-- Sección superior: Icono, título y porcentaje -->
+        <div class="career-header">
           <div class="career-icon">
             <img src="${iconSrc}" alt="${resultado.carrera}" />
           </div>
           <div class="career-title">${resultado.carrera}</div>
           <div class="progress-circle">
-            <svg width="64" height="64">
-              <circle class="circle-bg" cx="32" cy="32" r="${radius}" stroke="#e3e8f0" stroke-width="${stroke}" fill="none" />
-              <circle class="circle" cx="32" cy="32" r="${radius}" stroke="${color}" stroke-width="${stroke}" fill="none" 
+            <svg width="60" height="60">
+              <circle class="circle-bg" cx="30" cy="30" r="${radius}" stroke="#e3e8f0" stroke-width="${stroke}" fill="none" />
+              <circle class="circle" cx="30" cy="30" r="${radius}" stroke="${color}" stroke-width="${stroke}" fill="none" 
                      stroke-dasharray="${circumference}" stroke-dashoffset="${offset}" stroke-linecap="round" />
-              <text x="32" y="38" text-anchor="middle" font-size="18" fill="#13235B" font-family="Segoe UI, Arial, sans-serif">${resultado.porcentaje}%</text>
+              <text x="30" y="36" text-anchor="middle" font-size="16" fill="#13235B" font-family="Segoe UI, Arial, sans-serif">${resultado.porcentaje}%</text>
             </svg>
           </div>
         </div>
+        
+        <!-- Sección inferior: Descripción y enlace -->
+        <div class="career-description">
+          <p>${descripcion}</p>
+          <div class="career-actions">
+            <a href="${pdfUrl}" target="_blank" class="more-info-link">
+              📄 Más información
+            </a>
+          </div>
+        </div>
+        
       </div>
     `;
   });
