@@ -197,76 +197,96 @@ async function mostrarResultados() {
     .sort((a, b) => b.puntaje - a.puntaje)
     .slice(0, 3); // Solo los top 3
 
-  // Preparar datos para Google Sheets
-  const topCarrerasParaSheets = resultadosOrdenados.map(r => r.carrera);
-  const datos = {
-    campus: campusSeleccionado,
-    turno: turnoSeleccionado,
-    resultado: topCarrerasParaSheets.join(", "),
-    fecha: new Date().toLocaleString()
-  };
+  // OBTENER DATOS DE REGISTRO DESDE SESSIONSTORAGE
+  const datosRegistro = JSON.parse(sessionStorage.getItem('datosRegistro') || '{}');
+  console.log('Datos de registro recuperados:', datosRegistro);
 
-  // Enviar a Google Sheets
+// Convertir resultados a string plano, solo top 3
+const resultadosTop3 = resultadosOrdenados
+  .slice(0, 3)
+  .map(r => r && r.carrera ? r.carrera.toString() : "N/A");
+
+const datosCompletos = {
+  tipo: 'testVocacional',
+  nombre: datosRegistro.nombre || 'No especificado',
+  edad: datosRegistro.edad || 'No especificado', 
+  email: datosRegistro.email || 'No especificado',
+  telefono: datosRegistro.telefono || 'No especificado',
+  campus: campusSeleccionado,
+  turno: turnoSeleccionado,
+  resultados: resultadosTop3.join(", "), // 🔥 AQUI ya es UN STRING
+  fecha: new Date().toLocaleString()
+};
+
+
+
+  // Enviar TODOS los datos JUNTOS a Google Sheets
   try {
     const scriptURL = "https://script.google.com/macros/s/AKfycbz1ulYy0Gd9o8Sap19XFBCK0i3Sxyz89IkDo6B-Xvbv6RgN2KcMrYmEEhiECiXGxJsA/exec";
     const response = await fetch(scriptURL, {
       method: "POST",
-      body: JSON.stringify(datos),
+      body: JSON.stringify(datosCompletos),
       headers: {"Content-Type": "text/plain;charset=utf-8"}
     });
     const data = await response.json();
     if (data.status === "success") {
-      console.log("Todo guardado en Sheets ✅");
+      console.log("✅ Datos completos guardados en Sheets");
+      // Limpiar sessionStorage después de guardar exitosamente
+      sessionStorage.removeItem('datosRegistro');
     }
   } catch (err) {
     console.error("Error al enviar a Sheets:", err);
   }
 
   // Función para obtener icono de carrera
-function obtenerIconoCarrera(carrera) {
-  const iconos = {
-    'Administracion de empresas': '../src/img/administracion.png',
-    'Comunicacion': '../src/img/comunicacion.png',
-    'Pedagogia': '../src/img/pedagogia.png',
-    'Artes culinarias': '../src/img/artes.png',
-    'Derecho':'../src/img/derecho.png',
-    'Contaduria': '../src/img/contaduria.png',
-    'Programacion/Webmaster': '../src/img/programacion.png',
-    'Sistemas computacionales': '../src/img/sistemas.png'
-  };
-  return `<span style="font-size: 32px;">${iconos[carrera] || "🎓"}</span>`;
-}
+  function obtenerIconoCarrera(carrera) {
+    const iconos = {
+      'Administracion de empresas': 'src/img/administracion.png',
+      'Comunicacion': 'src/img/comunicacion.png',
+      'Pedagogia': 'src/img/pedagogia.png',
+      'Artes culinarias': 'src/img/artes.png',
+      'Derecho':'src/img/derecho.png',
+      'Contaduria': 'src/img/contaduria.png',
+      'Programacion/Webmaster': 'src/img/programacion.png',
+      'Sistemas computacionales': 'src/img/sistemas.png'
+    };
+    return iconos[carrera] || 'src/img/default.png';
+  }
 
   // Generar HTML de resultados (solo top 3)
   let resultadosHTML = `
     <div class="card">
       <h2>Tus Top 3 Carreras Recomendadas</h2>
       <p><strong>Campus:</strong> ${campusSeleccionado}</p>
+      <p><strong>Estudiante:</strong> ${datosRegistro.nombre || 'No especificado'}</p>
       <hr>
       <div class="top-results">
   `;
 
   resultadosOrdenados.forEach((resultado, index) => {
-    const iconoCarrera = obtenerIconoCarrera(resultado.carrera);
+    const iconSrc = obtenerIconoCarrera(resultado.carrera);
     const medallaColor = index === 0 ? '🥇' : index === 1 ? '🥈' : '🥉';
+    const radius = 28;
+    const stroke = 6;
+    const normalizedPercent = Math.max(0, Math.min(resultado.porcentaje, 100));
+    const circumference = 2 * Math.PI * radius;
+    const offset = circumference * (1 - normalizedPercent / 100);
+    const color = obtenerColorPorRanking(index);
     
     resultadosHTML += `
       <div class="career-result top-${index + 1}">
         <div class="ranking-medal">${medallaColor}</div>
-        <div class="career-icon">
-          ${iconoCarrera}
-        </div>
         <div class="career-info">
+          <div class="career-icon">
+            <img src="${iconSrc}" alt="${resultado.carrera}" />
+          </div>
           <div class="career-title">${resultado.carrera}</div>
-          <div class="career-subtitle">Posición #${index + 1}</div>
           <div class="progress-circle">
-            <svg viewBox="0 0 100 100">
-              <circle class="circle-bg" cx="50" cy="50" r="40" fill="none" stroke-width="10"></circle>
-              <circle class="circle" cx="50" cy="50" r="40" fill="none" 
-                     stroke="${obtenerColorPorRanking(index)}"
-                     stroke-dasharray="251.2"
-                     stroke-dashoffset="${251.2 - (251.2 * resultado.porcentaje / 100)}"></circle>
-              <text x="50" y="50" text-anchor="middle">${resultado.porcentaje}%</text>
+            <svg width="64" height="64">
+              <circle class="circle-bg" cx="32" cy="32" r="${radius}" stroke="#e3e8f0" stroke-width="${stroke}" fill="none" />
+              <circle class="circle" cx="32" cy="32" r="${radius}" stroke="${color}" stroke-width="${stroke}" fill="none" 
+                     stroke-dasharray="${circumference}" stroke-dashoffset="${offset}" stroke-linecap="round" />
+              <text x="32" y="38" text-anchor="middle" font-size="18" fill="#13235B" font-family="Segoe UI, Arial, sans-serif">${resultado.porcentaje}%</text>
             </svg>
           </div>
         </div>
@@ -291,10 +311,11 @@ function obtenerIconoCarrera(carrera) {
 
   // Event listener para reiniciar
   document.getElementById('btn-reiniciar').addEventListener('click', function() {
-    location.reload();
+    // Limpiar sessionStorage y regresar al inicio
+    sessionStorage.removeItem('datosRegistro');
+    window.location.href = 'index.html';
   });
 }
-
 
 // Función para obtener color según ranking (oro, plata, bronce)
 function obtenerColorPorRanking(index) {
@@ -303,28 +324,50 @@ function obtenerColorPorRanking(index) {
 }
 
 // Event listener para el formulario de inicio
-startForm.addEventListener('submit', function(e) {
-  e.preventDefault();
-  
-  campusSeleccionado = document.getElementById('campus').value;
-  turnoSeleccionado = document.getElementById('turno').value;
-  
-  if (!campusSeleccionado || !turnoSeleccionado) {
-    alert('Por favor selecciona una entidad y un horario');
-    return;
-  }
+if (startForm) {
+  startForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    campusSeleccionado = document.getElementById('campus').value;
+    turnoSeleccionado = document.getElementById('turno').value;
+    
+    console.log('Campus seleccionado:', campusSeleccionado);
+    console.log('Turno seleccionado:', turnoSeleccionado);
+    
+    if (!campusSeleccionado || !turnoSeleccionado) {
+      alert('Por favor selecciona una entidad y un horario');
+      return;
+    }
 
-  // Filtrar preguntas según el campus
-  preguntasFiltradas = filtrarPreguntasPorCampus(campusSeleccionado);
-  
-  // Ocultar formulario de inicio y mostrar test
-  startForm.classList.add('hidden');
-  testForm.classList.remove('hidden');
-  
-  // Inicializar variables
-  preguntaActual = 0;
-  respuestasUsuario = {};
-  
-  // Mostrar primera pregunta
-  mostrarPregunta(preguntaActual);
-});
+    // Filtrar preguntas según el campus
+    preguntasFiltradas = filtrarPreguntasPorCampus(campusSeleccionado);
+    console.log('Preguntas filtradas:', preguntasFiltradas.length);
+    
+    if (preguntasFiltradas.length === 0) {
+      alert('No hay preguntas disponibles para el campus seleccionado');
+      return;
+    }
+    
+    // Ocultar formulario de inicio y mostrar test
+    startForm.classList.add('hidden');
+    testForm.classList.remove('hidden');
+    
+    // Limpiar resultados previos
+    if (resultsDiv) {
+      resultsDiv.innerHTML = '';
+      resultsDiv.classList.add('hidden');
+    }
+    
+    // Inicializar variables
+    preguntaActual = 0;
+    respuestasUsuario = {};
+    
+    // Mostrar primera pregunta
+    mostrarPregunta(preguntaActual);
+  });
+}
+
+// Debug: Verificar que los elementos existen
+console.log('StartForm:', startForm);
+console.log('TestForm:', testForm);
+console.log('ResultsDiv:', resultsDiv);
