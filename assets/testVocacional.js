@@ -222,6 +222,21 @@ async function mostrarResultados() {
     console.error("Error al enviar a Sheets:", err);
   }
 
+  // Función para obtener icono de carrera
+function obtenerIconoCarrera(carrera) {
+  const iconos = {
+    'Administracion de empresas': '../src/img/administracion.png',
+    'Comunicacion': '../src/img/comunicacion.png',
+    'Pedagogia': '../src/img/pedagogia.png',
+    'Artes culinarias': '../src/img/artes.png',
+    'Derecho':'../src/img/derecho.png',
+    'Contaduria': '../src/img/contaduria.png',
+    'Programacion/Webmaster': '../src/img/programacion.png',
+    'Sistemas computacionales': '../src/img/sistemas.png'
+  };
+  return `<span style="font-size: 32px;">${iconos[carrera] || "🎓"}</span>`;
+}
+
   // Generar HTML de resultados (solo top 3)
   let resultadosHTML = `
     <div class="card">
@@ -280,20 +295,6 @@ async function mostrarResultados() {
   });
 }
 
-// Función para obtener icono de carrera
-function obtenerIconoCarrera(carrera) {
-  const iconos = {
-    "Administracion de empresas": "👔",
-    "Comunicacion": "📢",
-    "Pedagogia": "👨‍🏫",
-    "Artes culinarias": "👨‍🍳",
-    "Derecho": "⚖️",
-    "Contaduria": "💰",
-    "Programacion/Webmaster": "💻",
-    "Sistemas computacionales": "🖥️"
-  };
-  return `<span style="font-size: 32px;">${iconos[carrera] || "🎓"}</span>`;
-}
 
 // Función para obtener color según ranking (oro, plata, bronce)
 function obtenerColorPorRanking(index) {
