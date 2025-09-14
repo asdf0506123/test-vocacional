@@ -1,118 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/testVocacional.css" />
+    <link rel="icon" href="src/img/ites.png">
     <title>TEST DE ORIENTACIÓN VOCACIONAL</title>
-    <link rel="stylesheet" href="assets/testVocacional.css">
-</head>
-<body>
-    <header class="barra-superior">
-    <h1>Test de Orientación Vocacional</h1>
-  </header>
+  </head>
+  <body>
+    <header>
+      <img src="src/img/logo.png" alt="Logo-ites" title="Logo" />
+      <h1>Test de Orientación Vocacional</h1>
+    </header>
 
-  <main>
-    <div class="container">
+    <main>
+      <div class="container">
+        <!-- Formulario de inicio -->
+        <form id="start-form" class="card">
+          <div class="form-group">
+            <label for="campus">Entidad:</label>
+            <select id="campus" name="Campus" required>
+              <option value="">Selecciona una entidad</option>
+              <option value="Campeche">Campeche</option>
+              <option value="Escarcega">Escárcega</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="turno">Horario Deseado:</label>
+            <select id="turno" name="Turno" required>
+              <option value="">Selecciona un horario</option>
+              <option value="Morning">Matutino</option>
+              <option value="Afternoon">Vespertino</option>
+              <option value="Morning">Sabatino</option>
+            </select>
+            <button type="submit" id="btn" class="btn">Comenzar test</button>
+          </div>
+        </form>
 
-      <!-- Formulario de inicio -->
-      <form id="start-form" class="card">
-        <div class="form-group">
-          <label for="campus">Entidad:</label>
-          <select id="campus" name="Campus" required>
-            <option value="">Selecciona una entidad</option>
-            <option value="Campeche">Campeche</option>
-            <option value="Escarcega">Escárcega</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="turno">Horario Deseado:</label>
-          <select id="turno" name="Turno" required>
-            <option value="">Selecciona un horario</option>
-            <option value="Morning">Matutino</option>
-            <option value="Afternoon">Vespertino</option>
-            <option value="Morning">Sabatino</option>
-          </select>
-          <button type="submit" id="btn" class="btn">Comenzar test</button>
-        </div>
-      </form>
+        <!-- Formulario del test ya escrito en HTML -->
+        <form id="test-form" class="card hidden">
+          <h2>Responde las siguientes preguntas:</h2>
 
-      <!-- Formulario del test ya escrito en HTML -->
-      <form id="test-form" class="card hidden">
-        <h2>Responde las siguientes preguntas:</h2>
+          <div class="pregunta">
+            <p>
+              1. Me gusta cuando las cosas funcionan de manera ordenada en un
+              grupo.
+            </p>
+            <label><input type="radio" name="q1" value="1" /> Sí</label>
+            <label><input type="radio" name="q1" value="0" /> No</label>
+          </div>
 
-        <div class="pregunta">
-          <p>1. Me gusta cuando las cosas funcionan de manera ordenada en un grupo.</p>
-          <label><input type="radio" name="q1" value="1"> Sí</label>
-          <label><input type="radio" name="q1" value="0"> No</label>
-        </div>
+          <div class="pregunta">
+            <p>2. Disfruto cuando alguien entiende mejor algo gracias a mí.</p>
+            <label><input type="radio" name="q2" value="1" /> Sí</label>
+            <label><input type="radio" name="q2" value="0" /> No</label>
+          </div>
 
-        <div class="pregunta">
-          <p>2. Disfruto cuando alguien entiende mejor algo gracias a mí.</p>
-          <label><input type="radio" name="q2" value="1"> Sí</label>
-          <label><input type="radio" name="q2" value="0"> No</label>
-        </div>
+          <div class="pregunta">
+            <p>3. Me emociona probar sabores nuevos y combinar ingredientes.</p>
+            <label><input type="radio" name="q3" value="1" /> Sí</label>
+            <label><input type="radio" name="q3" value="0" /> No</label>
+          </div>
 
-        <div class="pregunta">
-          <p>3. Me emociona probar sabores nuevos y combinar ingredientes.</p>
-          <label><input type="radio" name="q3" value="1"> Sí</label>
-          <label><input type="radio" name="q3" value="0"> No</label>
-        </div>
+          <div class="pregunta">
+            <p>
+              4. Me interesa comprender cómo funcionan las reglas en la
+              sociedad.
+            </p>
+            <label><input type="radio" name="q4" value="1" /> Sí</label>
+            <label><input type="radio" name="q4" value="0" /> No</label>
+          </div>
 
-        <div class="pregunta">
-          <p>4. Me interesa comprender cómo funcionan las reglas en la sociedad.</p>
-          <label><input type="radio" name="q4" value="1"> Sí</label>
-          <label><input type="radio" name="q4" value="0"> No</label>
-        </div>
+          <div class="pregunta">
+            <p>5. Me resulta interesante manejar presupuestos o balances.</p>
+            <label><input type="radio" name="q5" value="1" /> Sí</label>
+            <label><input type="radio" name="q5" value="0" /> No</label>
+          </div>
 
-        <div class="pregunta">
-          <p>5. Me resulta interesante manejar presupuestos o balances.</p>
-          <label><input type="radio" name="q5" value="1"> Sí</label>
-          <label><input type="radio" name="q5" value="0"> No</label>
-        </div>
+          <div class="pregunta">
+            <p>
+              6. Me gusta imaginar cómo sería crear una herramienta digital.
+            </p>
+            <label><input type="radio" name="q6" value="1" /> Sí</label>
+            <label><input type="radio" name="q6" value="0" /> No</label>
+          </div>
 
-        <div class="pregunta">
-          <p>6. Me gusta imaginar cómo sería crear una herramienta digital.</p>
-          <label><input type="radio" name="q6" value="1"> Sí</label>
-          <label><input type="radio" name="q6" value="0"> No</label>
-        </div>
+          <div class="pregunta">
+            <p>7. No me incomoda hablar frente a varias personas.</p>
+            <label><input type="radio" name="q7" value="1" /> Sí</label>
+            <label><input type="radio" name="q7" value="0" /> No</label>
+          </div>
 
-        <div class="pregunta">
-          <p>7. No me incomoda hablar frente a varias personas.</p>
-          <label><input type="radio" name="q7" value="1"> Sí</label>
-          <label><input type="radio" name="q7" value="0"> No</label>
-        </div>
+          <div class="pregunta">
+            <p>
+              8. Siento curiosidad por descubrir por qué algo falla y
+              arreglarlo.
+            </p>
+            <label><input type="radio" name="q8" value="1" /> Sí</label>
+            <label><input type="radio" name="q8" value="0" /> No</label>
+          </div>
 
-        <div class="pregunta">
-          <p>8. Siento curiosidad por descubrir por qué algo falla y arreglarlo.</p>
-          <label><input type="radio" name="q8" value="1"> Sí</label>
-          <label><input type="radio" name="q8" value="0"> No</label>
-        </div>
+          <div class="pregunta">
+            <p>
+              9. Me gusta acompañar a las personas a encontrar una solución a
+              sus dudas.
+            </p>
+            <label><input type="radio" name="q9" value="1" /> Sí</label>
+            <label><input type="radio" name="q9" value="0" /> No</label>
+          </div>
 
-        <div class="pregunta">
-          <p>9. Me gusta acompañar a las personas a encontrar una solución a sus dudas.</p>
-          <label><input type="radio" name="q9" value="1"> Sí</label>
-          <label><input type="radio" name="q9" value="0"> No</label>
-        </div>
+          <div class="pregunta">
+            <p>10. Me siento en mi ambiente cuando estoy en una cocina.</p>
+            <label><input type="radio" name="q10" value="1" /> Sí</label>
+            <label><input type="radio" name="q10" value="0" /> No</label>
+          </div>
 
-        <div class="pregunta">
-          <p>10. Me siento en mi ambiente cuando estoy en una cocina.</p>
-          <label><input type="radio" name="q10" value="1"> Sí</label>
-          <label><input type="radio" name="q10" value="0"> No</label>
-        </div>
+          <button type="submit" class="btn">Ver Resultados</button>
+        </form>
 
-        <button type="submit" class="btn">Ver Resultados</button>
-      </form>
+        <!-- Resultados -->
+        <div id="results" class="results"></div>
+      </div>
+    </main>
 
-      <!-- Resultados -->
-      <div id="results"></div>
-    </div>
-  </main>
+    <footer>
+      <p>
+        © 2025 ITES. Todos los derechos reservados. Desarrollado por The
+        Organizers
+      </p>
+    </footer>
 
-  <footer class="barra-inferior">
-    <p>© 2025 ITES. Todos los derechos reservados. Desarrollado por The Organizers</p>
-  </footer>
-
-<script src="assets/testVocacional.js"></script>
-
-</body>
+    <script src="assets/testVocacional.js"></script>
+  </body>
 </html>

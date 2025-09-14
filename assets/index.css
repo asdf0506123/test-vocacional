@@ -63,7 +63,7 @@ header {
   position: relative;
 }
 
-header img{
+header img {
   width: 180px;
 }
 
@@ -78,7 +78,6 @@ header h1 {
   white-space: nowrap;
 }
 
-
 footer {
   height: 60px;
   display: flex;
@@ -89,7 +88,7 @@ footer {
   flex-wrap: wrap;
 }
 
-footer p{
+footer p {
   text-align: center;
 }
 
@@ -104,7 +103,8 @@ footer p{
   padding: 2rem 1rem;
   border-radius: 10px;
   width: 360px;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
+    rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
 
 .registro h2 {
@@ -132,7 +132,7 @@ footer p{
   border-radius: 9px;
 }
 
-.registro button{
+.registro button {
   background-color: #13235b;
   color: #fff;
   border: none;
@@ -144,22 +144,21 @@ footer p{
   transition: 0.3s ease-out;
 }
 
-.registro button:hover{
+.registro button:hover {
   background-color: #182e7c;
 }
 
-.registro .div-inputs{
+.registro .div-inputs {
   position: relative;
 }
 
-.registro .div-inputs i{
+.registro .div-inputs i {
   position: absolute;
   top: 50%;
   right: 10px;
   transform: translateY(-50%);
   color: #444;
 }
-
 
 /* CARD */
 .card {
@@ -352,6 +351,29 @@ input[type="radio"] {
 }
 
 /* Responsividad */
+@media (max-width: 970px) {
+  header {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    padding: 15px 10px;
+    text-align: center;
+  }
+
+  header img {
+    width: 140px;
+    margin-bottom: 8px;
+  }
+
+  header h1 {
+    position: static;
+    transform: none;
+    font-size: 1.5rem;
+    white-space: normal;
+  }
+}
+
 @media (max-width: 600px) {
   .career-icon {
     width: 54px;
@@ -370,36 +392,39 @@ input[type="radio"] {
     height: 48px;
   }
 
-  h1{
+  h1 {
     font-size: 1.5rem;
+  }
+
+  main{
+    min-height: 80dvh;
   }
 }
 
-@media (max-width: 480px){
-  h1{
+@media (max-width: 480px) {
+  h1 {
     font-size: 1.3rem;
   }
 
-  .registro{
+  .registro {
     width: 300px;
   }
 
-  .registro h2{
+  .registro h2 {
     font-size: 1.1rem;
   }
 
-  .registro .div-inputs input{
-    font-size: 14px;
+  .registro .div-inputs input {
+    font-size: 13px;
     height: 36px;
   }
 
-  .registro button{
+  .registro button {
     font-size: 14px;
     padding: 8px 0;
   }
 
-  footer p{
+  footer p {
     font-size: 14px;
   }
-
 }

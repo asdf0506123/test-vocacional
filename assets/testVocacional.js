@@ -290,8 +290,8 @@ const datosCompletos = {
   // Generar HTML de resultados (solo top 3)
   let resultadosHTML = `
     <div class="card">
-      <h2>Tus Top 3 Carreras Recomendadas</h2>
-      <p>Este test es solo una orientación vocacional. Para más información o asesoría personalizada, acude al Área de Vinculación.</p>
+      <h2 style="text-align: center;">Tus Top 3 Carreras Recomendadas</h2>
+      <p style="text-aling: center;">Este test es solo una orientación vocacional. Para más información o asesoría personalizada, acude al Área de Vinculación.</p>
       <hr>
       <div class="top-results">
   `;
