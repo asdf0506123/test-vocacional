@@ -392,7 +392,7 @@ input[type="radio"] {
     height: 48px;
   }
 
-  h1 {
+  header h1 {
     font-size: 1.5rem;
   }
 
@@ -402,8 +402,8 @@ input[type="radio"] {
 }
 
 @media (max-width: 480px) {
-  h1 {
-    font-size: 1.3rem;
+  header h1 {
+    font-size: 1.4rem;
   }
 
   .registro {
