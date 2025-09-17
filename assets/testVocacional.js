@@ -34,35 +34,35 @@ const carrerasPorCampus = {
 const informacionCarreras = {
   'Administracion de empresas': {
     descripcion: 'Forma líderes capaces de dirigir organizaciones, tomar decisiones estratégicas y gestionar recursos humanos y financieros de manera eficiente.',
-    pdf: 'src/pdfs/administracion-empresas.pdf'
+    pdf: 'src/planes/administracion.jpg'
   },
   'Comunicacion': {
     descripcion: 'Desarrolla profesionales en medios, marketing digital, relaciones públicas y creación de contenido para diversas plataformas.',
-    pdf: 'src/pdfs/comunicacion.pdf'
+    pdf: 'src/planes/comunicacion.jpg'
   },
   'Pedagogia': {
     descripcion: 'Prepara educadores comprometidos con la formación integral, diseño curricular y metodologías innovadoras de enseñanza-aprendizaje.',
-    pdf: 'src/pdfs/pedagogia.pdf'
+    pdf: 'src/planes/pedagogia.jpg'
   },
   'Artes culinarias': {
     descripcion: 'Forma chefs profesionales con técnicas gastronómicas avanzadas, administración de cocina y creación de experiencias culinarias únicas.',
-    pdf: 'src/pdfs/artes-culinarias.pdf'
+    pdf: 'src/planes/artes.jpg'
   },
   'Derecho': {
     descripcion: 'Prepara juristas íntegros con sólidos conocimientos legales para ejercer en diversas áreas del derecho y la justicia.',
-    pdf: 'src/pdfs/derecho.pdf'
+    pdf: 'src/planes/derecho.jpg'
   },
   'Contaduria': {
     descripcion: 'Desarrolla expertos en finanzas, auditoría, fiscalización y análisis contable para la toma de decisiones empresariales.',
-    pdf: 'src/pdfs/contaduria.pdf'
+    pdf: 'src/planes/contaduria.jpg'
   },
   'Programacion/Webmaster': {
     descripcion: 'Forma desarrolladores web especializados en programación, diseño de interfaces y gestión de proyectos digitales.',
-    pdf: 'src/pdfs/programacion-webmaster.pdf'
+    pdf: 'src/planes/programacion.jpg'
   },
   'Sistemas computacionales': {
     descripcion: 'Prepara ingenieros en sistemas capaces de desarrollar software, administrar redes y solucionar problemas tecnológicos complejos.',
-    pdf: 'src/pdfs/sistemas-computacionales.pdf'
+    pdf: 'src/planes/sistemas.jpg'
   }
 };
 
