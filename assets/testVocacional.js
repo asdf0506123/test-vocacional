@@ -13,13 +13,13 @@ const resultsDiv = document.getElementById("results");
 // Definición de carreras por campus
 const carrerasPorCampus = {
   'Campeche': [
-    "Administracion de empresas", 
-    "Comunicacion", 
-    "Pedagogia", 
+    "Administración de empresas", 
+    "Comunicación", 
+    "Pedagogía", 
     "Artes culinarias", 
     "Derecho", 
-    "Contaduria", 
-    "Programacion/Webmaster", 
+    "Contaduría", 
+    "Programación", 
     "Sistemas computacionales"
   ],
   'Escarcega': [
