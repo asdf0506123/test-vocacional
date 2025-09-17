@@ -94,10 +94,12 @@ footer p {
 
 /* CONTENEDOR */
 .container {
-  max-width: 1100px;
+  min-width: 400px;
   width: 100%;
-  padding: 0 15px;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* TITULOS */
@@ -191,7 +193,7 @@ input[type="radio"] {
   background: #fff;
   border-radius: 15px;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-  padding: 25px;
+  padding: 20px 18px;
   margin-bottom: 30px;
   position: relative;
   border-left: 5px solid;
@@ -708,14 +710,13 @@ hr {
 
 /* Estilos especiales para TOP 3 */
 .results{
-  width: 100%x;
+  max-width: 1100px;
   height: auto;
-
 }
 .top-results {
   display: flex;
   flex-direction: row;
-  gap: 15px;
+  gap: 8px;
 }
 
 .results .card{
@@ -723,6 +724,7 @@ hr {
 }
 
 .career-result {
+
   position: relative;
   animation: slideInUp 0.6s ease-out;
   border-left: 4px solid transparent;
@@ -886,7 +888,7 @@ hr {
 
 
 /* Responsive design mejorado */
-@media (max-width: 600px){
+@media (max-width: 900px){
   .top-results{
     flex-direction: column;
   }
@@ -913,6 +915,7 @@ hr {
     font-size: 1.5rem;
     white-space: normal;
   }
+
 }
 
 @media (max-width: 768px) {
