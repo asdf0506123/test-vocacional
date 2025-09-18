@@ -182,10 +182,10 @@ function mostrarPregunta(indicePregunta) {
           preguntaActual++;
           mostrarPregunta(preguntaActual);
         } else {
-          // Es la última pregunta, mostrar resultados
-          mostrarResultados();
+          
+          mostrarSweetAlertCalculando();
         }
-      }, 500); // 500ms de delay para que el usuario vea su selección
+      }, 500);
     });
   });
 
@@ -199,6 +199,28 @@ function mostrarPregunta(indicePregunta) {
       }
     });
   }
+}
+
+// Función para mostrar Sweet Alert de "Calculando resultados"
+function mostrarSweetAlertCalculando() {
+  
+  Swal.fire({
+    title: "Calculando tus resultados...",
+    html: "Procesando y enviando datos...<br><small>Por favor espera mientras guardamos tu información</small>",
+    imageUrl: "src/img/seti.gif",
+    imageWidth: 300,
+    imageHeight: 295,
+    imageAlt: "Calculando resultados",
+    allowOutsideClick: false,
+    allowEscapeKey: false,
+    showConfirmButton: false,
+    didOpen: () => {
+      Swal.showLoading();
+      
+
+      mostrarResultados();
+    }
+  });
 }
 
 // Función para calcular y mostrar resultados
@@ -250,7 +272,7 @@ const datosCompletos = {
   telefono: datosRegistro.telefono || 'No especificado',
   campus: campusSeleccionado,
   turno: turnoSeleccionado,
-  resultados: resultadosTop3.join(", "), // 🔥 AQUI ya es UN STRING
+  resultados: resultadosTop3.join(", "),
   fecha: new Date().toLocaleString()
 };
 
@@ -291,7 +313,7 @@ const datosCompletos = {
   let resultadosHTML = `
     <div class="card">
       <h2 style="text-align: center;">Tus Top 3 Carreras Recomendadas</h2>
-      <p style="text-aling: center;">Este test es solo una orientación vocacional. Para más información o asesoría personalizada, acude al Área de Vinculación.</p>
+      <p style="text-align: center;">Este test es solo una orientación vocacional. Para más información o asesoría personalizada, acude al Área de Vinculación.</p>
       <hr>
       <div class="top-results">
   `;
@@ -356,9 +378,15 @@ const datosCompletos = {
     </div>
   `;
 
+  // Cerrar el Sweet Alert cuando TODO esté listo
+  Swal.close();
+
   testForm.classList.add('hidden');
   resultsDiv.innerHTML = resultadosHTML;
   resultsDiv.classList.remove('hidden');
+
+  // Asegurar que el scroll vaya a los resultados
+  resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
   // Event listener para reiniciar
   document.getElementById('btn-reiniciar').addEventListener('click', function() {
