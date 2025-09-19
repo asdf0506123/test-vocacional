@@ -34,15 +34,15 @@ const carrerasPorCampus = {
 const informacionCarreras = {
   'Administración de empresas': {
     descripcion: 'Forma líderes capaces de dirigir organizaciones, tomar decisiones estratégicas y gestionar recursos humanos y financieros de manera eficiente.',
-    pdf: 'src/planes/Administración.jpg'
+    pdf: 'src/planes/administracion.jpg'
   },
   'Comunicación': {
     descripcion: 'Desarrolla profesionales en medios, marketing digital, relaciones públicas y creación de contenido para diversas plataformas.',
-    pdf: 'src/planes/Comunicación.jpg'
+    pdf: 'src/planes/comunicacion.jpg'
   },
   'Pedagogía': {
     descripcion: 'Prepara educadores comprometidos con la formación integral, diseño curricular y metodologías innovadoras de enseñanza-aprendizaje.',
-    pdf: 'src/planes/Pedagogía.jpg'
+    pdf: 'src/planes/pedagogia.jpg'
   },
   'Artes culinarias': {
     descripcion: 'Forma chefs profesionales con técnicas gastronómicas avanzadas, administración de cocina y creación de experiencias culinarias únicas.',
@@ -54,11 +54,11 @@ const informacionCarreras = {
   },
   'Contaduría': {
     descripcion: 'Desarrolla expertos en finanzas, auditoría, fiscalización y análisis contable para la toma de decisiones empresariales.',
-    pdf: 'src/planes/Contaduría.jpg'
+    pdf: 'src/planes/contaduria.jpg'
   },
   'Programación': {
     descripcion: 'Forma desarrolladores web especializados en programación, diseño de interfaces y gestión de proyectos digitales.',
-    pdf: 'src/planes/Programación.jpg'
+    pdf: 'src/planes/programacion.jpg'
   },
   'Sistemas computacionales': {
     descripcion: 'Prepara ingenieros en sistemas capaces de desarrollar software, administrar redes y solucionar problemas tecnológicos complejos.',
@@ -297,13 +297,13 @@ const datosCompletos = {
   // Función para obtener icono de carrera
   function obtenerIconoCarrera(carrera) {
     const iconos = {
-      'Administración de empresas': 'src/img/Administración.png',
-      'Comunicación': 'src/img/Comunicación.png',
-      'Pedagogía': 'src/img/Pedagogía.png',
+      'Administración de empresas': 'src/img/administracion.png',
+      'Comunicación': 'src/img/comunicacion.png',
+      'Pedagogía': 'src/img/pedagogia.png',
       'Artes culinarias': 'src/img/artes.png',
       'Derecho':'src/img/derecho.png',
-      'Contaduría': 'src/img/Contaduría.png',
-      'Programación': 'src/img/Programación.png',
+      'Contaduría': 'src/img/contaduria.png',
+      'Programación': 'src/img/programacion.png',
       'Sistemas computacionales': 'src/img/sistemas.png'
     };
     return iconos[carrera] || 'src/img/default.png';
