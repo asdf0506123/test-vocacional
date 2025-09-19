@@ -44,7 +44,7 @@
             <i class="fa-solid fa-user"></i>
           </div>
           <div class="div-inputs input-age">
-            <input type="text" placeholder="Introduce tu edad" name="Edad" id="edad" required />
+            <input type="text" placeholder="Introduce tu edad" name="Edad" id="edad" min="1" max="100" required />
             <i class="fa-solid fa-user-tie"></i>
           </div>
           <div class="div-inputs input-email">
@@ -67,7 +67,7 @@
             />
             <i class="fa-solid fa-phone"></i>
           </div>
-          <button type="submit" id="registrar-btn" onclick="registroExitoso()">Registrarse</button>
+          <button type="submit" id="registrar-btn">Registrarse</button>
         </div>
       </form>
     </main>
@@ -82,7 +82,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="assets/index.js"></script>
     <script src="assets/formulario.js"></script>
+    <script src="assets/index.js"></script>
   </body>
 </html>

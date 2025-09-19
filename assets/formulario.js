@@ -26,15 +26,6 @@ form.addEventListener("submit", async function (e) {
 
     console.log('✅ Datos de registro guardados temporalmente');
 
-    // Mostrar mensaje de éxito y luego redireccionar
-    registroExitoso();
-    
-    // Resetear formulario y redireccionar después de que el usuario cierre el alert
-    form.reset();
-    setTimeout(() => {
-      window.location.href = "testVocacional.html";
-    }, 1500);
-
   } catch (error) {
     console.error("Error:", error);
     alert("Error: " + error.message);
@@ -44,12 +35,3 @@ form.addEventListener("submit", async function (e) {
     submitButton.textContent = "Registrarse";
   }
 });
-
-function registroExitoso() {
-  Swal.fire({
-    icon: 'success',
-    title: '¡Registro Exitoso!',
-    text: 'Ahora puedes continuar con el test vocacional.',
-    confirmButtonText: 'Realizar Test'
-  });
-}
