@@ -50,6 +50,6 @@ function registroExitoso() {
     icon: 'success',
     title: '¡Registro Exitoso!',
     text: 'Ahora puedes continuar con el test vocacional.',
-    confirmButtonText: 'Continuar'
+    confirmButtonText: 'Realizar Test'
   });
 }
