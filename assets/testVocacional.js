@@ -23,26 +23,26 @@ const carrerasPorCampus = {
     "Sistemas computacionales"
   ],
   'Escarcega': [
-    "Administracion de empresas", 
-    "Pedagogia", 
+    "Administración de empresas", 
+    "Pedagogía", 
     "Derecho", 
-    "Contaduria"
+    "Contaduría"
   ]
 };
 
 // Información detallada de cada carrera
 const informacionCarreras = {
-  'Administracion de empresas': {
+  'Administración de empresas': {
     descripcion: 'Forma líderes capaces de dirigir organizaciones, tomar decisiones estratégicas y gestionar recursos humanos y financieros de manera eficiente.',
-    pdf: 'src/planes/administracion.jpg'
+    pdf: 'src/planes/Administración.jpg'
   },
-  'Comunicacion': {
+  'Comunicación': {
     descripcion: 'Desarrolla profesionales en medios, marketing digital, relaciones públicas y creación de contenido para diversas plataformas.',
-    pdf: 'src/planes/comunicacion.jpg'
+    pdf: 'src/planes/Comunicación.jpg'
   },
-  'Pedagogia': {
+  'Pedagogía': {
     descripcion: 'Prepara educadores comprometidos con la formación integral, diseño curricular y metodologías innovadoras de enseñanza-aprendizaje.',
-    pdf: 'src/planes/pedagogia.jpg'
+    pdf: 'src/planes/Pedagogía.jpg'
   },
   'Artes culinarias': {
     descripcion: 'Forma chefs profesionales con técnicas gastronómicas avanzadas, administración de cocina y creación de experiencias culinarias únicas.',
@@ -52,13 +52,13 @@ const informacionCarreras = {
     descripcion: 'Prepara juristas íntegros con sólidos conocimientos legales para ejercer en diversas áreas del derecho y la justicia.',
     pdf: 'src/planes/derecho.jpg'
   },
-  'Contaduria': {
+  'Contaduría': {
     descripcion: 'Desarrolla expertos en finanzas, auditoría, fiscalización y análisis contable para la toma de decisiones empresariales.',
-    pdf: 'src/planes/contaduria.jpg'
+    pdf: 'src/planes/Contaduría.jpg'
   },
-  'Programacion/Webmaster': {
+  'Programación': {
     descripcion: 'Forma desarrolladores web especializados en programación, diseño de interfaces y gestión de proyectos digitales.',
-    pdf: 'src/planes/programacion.jpg'
+    pdf: 'src/planes/Programación.jpg'
   },
   'Sistemas computacionales': {
     descripcion: 'Prepara ingenieros en sistemas capaces de desarrollar software, administrar redes y solucionar problemas tecnológicos complejos.',
@@ -70,12 +70,12 @@ const todasLasPreguntas = [
   { 
     id: 1,
     texto: "Me gusta cuando las cosas funcionan de manera ordenada en un grupo.",
-    carreras: ["Administracion de empresas", "Comunicacion"] 
+    carreras: ["Administración de empresas", "Comunicación"] 
   },
   { 
     id: 2,
     texto: "Disfruto cuando alguien entiende mejor algo gracias a mí.",
-    carreras: ["Pedagogia"] 
+    carreras: ["Pedagogía"] 
   },
   { 
     id: 3,
@@ -90,27 +90,27 @@ const todasLasPreguntas = [
   { 
     id: 5,
     texto: "Me resulta interesante manejar presupuestos o balances.",
-    carreras: ["Contaduria", "Administracion de empresas"] 
+    carreras: ["Contaduría", "Administración de empresas"] 
   },
   { 
     id: 6,
     texto: "Me gusta imaginar cómo sería crear una herramienta digital.",
-    carreras: ["Programacion/Webmaster", "Sistemas computacionales"] 
+    carreras: ["Programación", "Sistemas computacionales"] 
   },
   { 
     id: 7,
     texto: "No me incomoda hablar frente a varias personas.",
-    carreras: ["Comunicacion", "Derecho"] 
+    carreras: ["Comunicación", "Derecho"] 
   },
   { 
     id: 8,
     texto: "Siento curiosidad por descubrir por qué algo falla y arreglarlo.",
-    carreras: ["Sistemas computacionales", "Programacion/Webmaster"] 
+    carreras: ["Sistemas computacionales", "Programación"] 
   },
   { 
     id: 9,
     texto: "Me gusta acompañar a las personas a encontrar una solución a sus dudas.",
-    carreras: ["Pedagogia", "Administracion de empresas"] 
+    carreras: ["Pedagogía", "Administración de empresas"] 
   },
   { 
     id: 10,
@@ -297,13 +297,13 @@ const datosCompletos = {
   // Función para obtener icono de carrera
   function obtenerIconoCarrera(carrera) {
     const iconos = {
-      'Administracion de empresas': 'src/img/administracion.png',
-      'Comunicacion': 'src/img/comunicacion.png',
-      'Pedagogia': 'src/img/pedagogia.png',
+      'Administración de empresas': 'src/img/Administración.png',
+      'Comunicación': 'src/img/Comunicación.png',
+      'Pedagogía': 'src/img/Pedagogía.png',
       'Artes culinarias': 'src/img/artes.png',
       'Derecho':'src/img/derecho.png',
-      'Contaduria': 'src/img/contaduria.png',
-      'Programacion/Webmaster': 'src/img/programacion.png',
+      'Contaduría': 'src/img/Contaduría.png',
+      'Programación': 'src/img/Programación.png',
       'Sistemas computacionales': 'src/img/sistemas.png'
     };
     return iconos[carrera] || 'src/img/default.png';
@@ -371,7 +371,7 @@ const datosCompletos = {
       </div>
       <div style="text-align: center; margin-top: 30px;">
         <p style="color: #666; margin-bottom: 20px;">
-          <em>Estos resultados se basan en tus respuestas y han sido guardados para seguimiento académico.</em>
+          <em>Tus respuestas han sido guardadas para seguimiento académico.</em>
         </p>
         <button type="button" id="btn-reiniciar" class="btn">Realizar Test Nuevamente</button>
       </div>
