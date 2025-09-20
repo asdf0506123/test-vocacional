@@ -338,10 +338,21 @@ function mostrarSweetAlertCalculando() {
 async function mostrarResultados() {
   const carrerasDisponibles = carrerasPorCampus[campusSeleccionado];
   const puntajes = {};
+  const preguntasPorCarrera = {}; 
 
-  // Inicializar puntajes
+  // Inicializar puntajes Y contar preguntas por carrera
   carrerasDisponibles.forEach(carrera => {
     puntajes[carrera] = 0;
+    preguntasPorCarrera[carrera] = 0;
+  });
+
+  //Contar cuántas preguntas corresponden a cada carrera
+  preguntasFiltradas.forEach(pregunta => {
+    pregunta.carreras.forEach(carrera => {
+      if (preguntasPorCarrera.hasOwnProperty(carrera)) {
+        preguntasPorCarrera[carrera]++;
+      }
+    });
   });
 
   // Calcular puntajes basado en las respuestas
@@ -361,31 +372,35 @@ async function mostrarResultados() {
     .map(([carrera, puntaje]) => ({
       carrera,
       puntaje,
-      porcentaje: Math.round((puntaje / preguntasFiltradas.length) * 100)
+      porcentaje: Math.round((puntaje / preguntasPorCarrera[carrera]) * 100) // CORREGIDO AQUÍ
     }))
     .sort((a, b) => b.puntaje - a.puntaje)
     .slice(0, 3); // Solo los top 3
+
+  console.log('Preguntas por carrera:', preguntasPorCarrera);
+  console.log('Puntajes obtenidos:', puntajes);
+  console.log('Resultados con porcentajes corregidos:', resultadosOrdenados);
 
   // OBTENER DATOS DE REGISTRO DESDE SESSIONSTORAGE
   const datosRegistro = JSON.parse(sessionStorage.getItem('datosRegistro') || '{}');
   console.log('Datos de registro recuperados:', datosRegistro);
 
-// Convertir resultados a string plano, solo top 3
-const resultadosTop3 = resultadosOrdenados
-  .slice(0, 3)
-  .map(r => r && r.carrera ? r.carrera.toString() : "N/A");
+  // Convertir resultados a string plano, solo top 3
+  const resultadosTop3 = resultadosOrdenados
+    .slice(0, 3)
+    .map(r => r && r.carrera ? r.carrera.toString() : "N/A");
 
-const datosCompletos = {
-  tipo: 'testVocacional',
-  nombre: datosRegistro.nombre || 'No especificado',
-  edad: datosRegistro.edad || 'No especificado', 
-  email: datosRegistro.email || 'No especificado',
-  telefono: datosRegistro.telefono || 'No especificado',
-  campus: campusSeleccionado,
-  turno: turnoSeleccionado,
-  resultados: resultadosTop3.join(", "),
-  fecha: new Date().toLocaleString()
-};
+  const datosCompletos = {
+    tipo: 'testVocacional',
+    nombre: datosRegistro.nombre || 'No especificado',
+    edad: datosRegistro.edad || 'No especificado', 
+    email: datosRegistro.email || 'No especificado',
+    telefono: datosRegistro.telefono || 'No especificado',
+    campus: campusSeleccionado,
+    turno: turnoSeleccionado,
+    resultados: resultadosTop3.join(", "),
+    fecha: new Date().toLocaleString()
+  };
 
   // Enviar TODOS los datos JUNTOS a Google Sheets
   try {
@@ -458,7 +473,7 @@ const datosCompletos = {
             <svg width="60" height="60">
               <circle class="circle-bg" cx="30" cy="30" r="${radius}" stroke="#e3e8f0" stroke-width="${stroke}" fill="none" />
               <circle class="circle" cx="30" cy="30" r="${radius}" stroke="${color}" stroke-width="${stroke}" fill="none" 
-                     stroke-dasharray="${circumference}" stroke-dashoffset="${offset}" stroke-linecap="round" />
+                    stroke-dasharray="${circumference}" stroke-dashoffset="${offset}" stroke-linecap="round" />
               <text x="30" y="36" text-anchor="middle" font-size="16" fill="#13235B" font-family="Segoe UI, Arial, sans-serif">${resultado.porcentaje}%</text>
             </svg>
           </div>
