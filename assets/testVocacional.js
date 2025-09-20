@@ -69,55 +69,166 @@ const informacionCarreras = {
 const todasLasPreguntas = [
   { 
     id: 1,
-    texto: "Me gusta cuando las cosas funcionan de manera ordenada en un grupo.",
-    carreras: ["Administración de empresas", "Comunicación"] 
+    texto: "Prefiero organizar recursos y coordinar tareas de forma que todos los integrantes de un grupo alcancen sus metas, aunque eso implique negociar prioridades constantemente.",
+    carreras: ["Administración de empresas"] 
   },
   { 
     id: 2,
-    texto: "Disfruto cuando alguien entiende mejor algo gracias a mí.",
+    texto: "Me siento motivado/a cuando puedo adaptar mis explicaciones para que otras personas comprendan conceptos difíciles.",
     carreras: ["Pedagogía"] 
   },
   { 
     id: 3,
-    texto: "Me emociona probar sabores nuevos y combinar ingredientes.",
+    texto: "Me atrae combinar elementos distintos para crear algo que provoque una experiencia sensorial completa (sabor, textura, presentación).",
     carreras: ["Artes culinarias"] 
   },
   { 
     id: 4,
-    texto: "Me interesa comprender cómo funcionan las reglas en la sociedad.",
+    texto: "Me interesa analizar situaciones complejas y estructurarlas de manera lógica para proponer soluciones justas.",
     carreras: ["Derecho"] 
   },
   { 
     id: 5,
-    texto: "Me resulta interesante manejar presupuestos o balances.",
-    carreras: ["Contaduría", "Administración de empresas"] 
+    texto: "Me siento cómodo/a trabajando con cifras y datos para detectar patrones y discrepancias.",
+    carreras: ["Contaduría"] 
   },
   { 
     id: 6,
-    texto: "Me gusta imaginar cómo sería crear una herramienta digital.",
-    carreras: ["Programación", "Sistemas computacionales"] 
+    texto: "Me atrae enfrentar problemas complejos y descomponerlos en pasos lógicos hasta encontrar la solución.",
+    carreras: ["Programación"] 
   },
   { 
     id: 7,
-    texto: "No me incomoda hablar frente a varias personas.",
-    carreras: ["Comunicación", "Derecho"] 
+    texto: "Me siento cómodo/a expresando ideas de manera clara y persuasiva a distintos tipos de público.",
+    carreras: ["Comunicación"] 
   },
   { 
     id: 8,
-    texto: "Siento curiosidad por descubrir por qué algo falla y arreglarlo.",
-    carreras: ["Sistemas computacionales", "Programación"] 
+    texto: "Disfruto diseñar y probar soluciones complejas que mejoren la eficiencia de procesos o sistemas.",
+    carreras: ["Sistemas computacionales"] 
   },
   { 
     id: 9,
-    texto: "Me gusta acompañar a las personas a encontrar una solución a sus dudas.",
-    carreras: ["Pedagogía", "Administración de empresas"] 
+    texto: "Cuando surge un problema en un proyecto, me enfoco en definir soluciones concretas y asignar responsabilidades más que esperar a que se resuelva solo.",
+    carreras: ["Administración de empresas"] 
   },
   { 
     id: 10,
-    texto: "Me siento en mi ambiente cuando estoy en una cocina.",
+    texto: "Disfruto observar cómo aprenden otros y ajustar mi enfoque según sus reacciones y necesidades.",
+    carreras: ["Pedagogía"] 
+  },
+  { 
+    id: 11,
+    texto: "Prefiero ambientes activos donde la precisión y el tiempo son esenciales para el resultado final.",
     carreras: ["Artes culinarias"] 
+  },
+  { 
+    id: 12,
+    texto: "Disfruto argumentar y defender posiciones con evidencia y razonamiento sólido.",
+    carreras: ["Derecho"] 
+  },
+  { 
+    id: 13,
+    texto: "Prefiero actividades metódicas que requieran atención al detalle y precisión constante.",
+    carreras: ["Contaduría"] 
+  },
+  { 
+    id: 14,
+    texto: "Prefiero crear soluciones que otros puedan usar digitalmente, más que teorizar sobre ellas.",
+    carreras: ["Programación"] 
+  },
+  { 
+    id: 15,
+    texto: "Disfruto investigar y estructurar información para que otros puedan comprenderla y utilizarla.",
+    carreras: ["Comunicación"] 
+  },
+  { 
+    id: 16,
+    texto: "Me atrae analizar datos y estructuras para detectar errores o oportunidades de mejora.",
+    carreras: ["Sistemas computacionales"] 
+  },
+  { 
+    id: 17,
+    texto: "Prefiero entornos donde puedo experimentar, investigar y aplicar soluciones técnicas.",
+    carreras: ["Programación"] 
+  },
+  { 
+    id: 18,
+    texto: "Me motiva mantener sistemas seguros y funcionales, anticipando problemas antes de que ocurran.",
+    carreras: ["Sistemas computacionales"] 
+  },
+  { 
+    id: 19,
+    texto: "Prefiero proyectos colaborativos donde la creatividad y la estrategia de comunicación sean esenciales.",
+    carreras: ["Comunicación"] 
+  },
+  { 
+    id: 20,
+    texto: "Disfruto aprender y aplicar nuevas tecnologías y herramientas para mejorar procesos existentes.",
+    carreras: ["Sistemas computacionales"] 
+  },
+  { 
+    id: 21,
+    texto: "Disfruto prever recursos y planificar para que todo se mantenga equilibrado y dentro de límites.",
+    carreras: ["Administración de empresas"] 
+  },
+  { 
+    id: 22,
+    texto: "Prefiero ambientes donde se valoren las normas y se busque equilibrio entre diferentes intereses.",
+    carreras: ["Derecho"] 
+  },
+  { 
+    id: 23,
+    texto: "Disfruto trabajar con mis manos para materializar ideas, más que solo leer sobre ellas.",
+    carreras: ["Artes culinarias"] 
+  },
+  { 
+    id: 24,
+    texto: "Prefiero ambientes donde el éxito se mide por el crecimiento de los demás más que por mis propios logros.",
+    carreras: ["Pedagogía"] 
+  },
+  { 
+    id: 25,
+    texto: "Me atrae analizar situaciones complejas para encontrar patrones que permitan tomar decisiones más eficientes.",
+    carreras: ["Contaduría"] 
+  },
+  { 
+    id: 26,
+    texto: "Disfruto evaluar resultados y diseñar estrategias de mejora, incluso si implica supervisar a otros.",
+    carreras: ["Administración de empresas"] 
+  },
+  { 
+    id: 27,
+    texto: "Tengo paciencia para acompañar a alguien a superar dificultades, incluso si es un proceso largo y repetitivo.",
+    carreras: ["Pedagogía"] 
+  },
+  { 
+    id: 28,
+    texto: "Me motiva experimentar, probar nuevas técnicas y corregir errores hasta perfeccionar un resultado tangible.",
+    carreras: ["Artes culinarias"] 
+  },
+  { 
+    id: 29,
+    texto: "Me motiva comprender cómo las reglas y acuerdos influyen en la vida de las personas y la sociedad.",
+    carreras: ["Derecho"] 
+  },
+  { 
+    id: 30,
+    texto: "Me motiva que mis análisis permitan tomar decisiones financieras acertadas y responsables.",
+    carreras: ["Contaduría"] 
+  },
+  { 
+    id: 31,
+    texto: "Me motiva optimizar sistemas para que funcionen de manera eficiente y sin errores, incluso si requiere esfuerzo repetitivo.",
+    carreras: ["Programación"] 
+  },
+  { 
+    id: 32,
+    texto: "Me motiva influir en la percepción de otros y generar impacto mediante palabras, imágenes o medios.",
+    carreras: ["Comunicación"] 
   }
 ];
+
 
 // Función para filtrar preguntas según el campus
 function filtrarPreguntasPorCampus(campus) {
