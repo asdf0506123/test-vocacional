@@ -184,7 +184,7 @@ const todasLasPreguntas = [
   },
   { 
     id: 24,
-    texto: "Prefiero ambientes donde el éxito se mide por el crecimiento de los demás más que por mis propios logros.",
+    texto: "Disfruto de entornos en donde el éxito se mida por el crecimiento de los demás.",
     carreras: ["Pedagogía"] 
   },
   { 
