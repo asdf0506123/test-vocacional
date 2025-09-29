@@ -493,6 +493,8 @@ async function mostrarResultados() {
     `;
   });
 
+  const mensajeWhatsApp = encodeURIComponent(`¡Estos son mis resultados del test vocacional!\n\nCarreras recomendadas:\n${resultadosOrdenados.map(r => `${r.carrera}: ${r.porcentaje}%`).join('\n')}\n\nCampus: ${campusSeleccionado}\n`);
+
   resultadosHTML += `
       </div>
       <div style="text-align: center; margin-top: 30px;">
@@ -500,6 +502,7 @@ async function mostrarResultados() {
           <em>Tus respuestas han sido guardadas para seguimiento académico.</em>
         </p>
         <button type="button" id="btn-reiniciar" class="btn">Realizar Test Nuevamente</button>
+        <a href="https://api.whatsapp.com/send?phone=9811234567&text=${mensajeWhatsApp}" target="_blank" class="btn">Enviar resultados a Vinculación Académica</a>
       </div>
     </div>
   `;
