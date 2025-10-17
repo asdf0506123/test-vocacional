@@ -5,11 +5,11 @@ const testForm = document.getElementById("test-form");
 const registro = document.getElementById("registro");
 
 registro.addEventListener("submit", function (e) {
-  e.preventDefault(); // Prevenir el envío normal del formulario
+  e.preventDefault(); 
   
   // Validar que todos los campos requeridos estén llenos
   if (!validarFormulario()) {
-    return; // Detener la ejecución si la validación falla
+    return; 
   }
   
   registro.classList.add("hidden");
@@ -31,9 +31,7 @@ function validarFormulario() {
     // Verificar si el campo está vacío
     if (!campo.value.trim()) {
       formularioValido = false;
-      campo.classList.add('error'); // Agregar clase para estilo visual
-      
-      // Guardar referencia del primer campo vacío para hacer focus
+      campo.classList.add('error'); 
       if (!primerCampoVacio) {
         primerCampoVacio = campo;
       }
@@ -42,7 +40,7 @@ function validarFormulario() {
   
 // Si hay campos vacíos, mostrar mensaje de error
   if (!formularioValido) {
-    // Hacer focus en el primer campo vacío
+    
     if (primerCampoVacio) {
       primerCampoVacio.focus();
     }
@@ -58,7 +56,7 @@ function registroExitoso() {
     text: 'Ahora puedes continuar con el test vocacional.',
     confirmButtonText: 'Realizar Test'
   }).then((result) => {
-    // Cuando el usuario haga clic en el botón "Realizar Test"
+    
     if (result.isConfirmed) {
       window.location.href = 'testVocacional.html';
     }

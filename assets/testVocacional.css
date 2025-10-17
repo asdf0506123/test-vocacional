@@ -176,6 +176,7 @@ input[type="radio"] {
   cursor: pointer;
   transition: background 0.25s, transform 0.2s;
   margin-top: 15px;
+  text-decoration: none;
 }
 .btn:hover {
   background: #04001e;
@@ -385,7 +386,7 @@ input[type="radio"] {
   transform: none;
 }
 
-/*Resultados*/
+
 
 /* Animación para transición entre preguntas */
 .pregunta-container {
@@ -886,6 +887,15 @@ hr {
   justify-content: center;
 }
 
+.div-vinculación{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.enviar-vinculacion{
+  text-decoration: none;
+}
 
 /* Responsive design mejorado */
 @media (max-width: 900px){
@@ -1009,6 +1019,10 @@ hr {
   .progress-circle svg {
     width: 45px;
     height: 45px;
+  }
+
+  .div-vinculación{
+    flex-direction: column;
   }
 }
 
