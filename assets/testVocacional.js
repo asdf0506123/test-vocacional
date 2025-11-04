@@ -453,7 +453,7 @@ async function mostrarResultados() {
   // Enviar TODOS los datos JUNTOS a Google Sheets
   try {
     const scriptURL =
-      "https://script.google.com/macros/s/AKfycbz1ulYy0Gd9o8Sap19XFBCK0i3Sxyz89IkDo6B-Xvbv6RgN2KcMrYmEEhiECiXGxJsA/exec";
+      process.env.API_KEY;
     const response = await fetch(scriptURL, {
       method: "POST",
       body: JSON.stringify(datosCompletos),
