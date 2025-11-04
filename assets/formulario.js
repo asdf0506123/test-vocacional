@@ -24,7 +24,7 @@ form.addEventListener("submit", async function (e) {
       telefono: formDataObj.Teléfono
     }));
 
-    console.log('✅ Datos de registro guardados temporalmente');
+    console.log('Datos guardados');
 
   } catch (error) {
     console.error("Error:", error);
