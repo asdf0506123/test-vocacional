@@ -413,15 +413,15 @@ async function mostrarResultados() {
     }
   });
 
-  // Convertir a array y ordenar por puntaje (solo top 3)
+  // El array para ordenar por puntaje (solo top 3)
   const resultadosOrdenados = Object.entries(puntajes)
     .map(([carrera, puntaje]) => ({
       carrera,
       puntaje,
-      porcentaje: Math.round((puntaje / preguntasPorCarrera[carrera]) * 100), // CORREGIDO AQUÍ
+      porcentaje: Math.round((puntaje / preguntasPorCarrera[carrera]) * 100),
     }))
     .sort((a, b) => b.puntaje - a.puntaje)
-    .slice(0, 3); // Solo los top 3
+    .slice(0, 3);
 
   console.log("Preguntas por carrera:", preguntasPorCarrera);
   console.log("Puntajes obtenidos:", puntajes);
@@ -450,7 +450,7 @@ async function mostrarResultados() {
     fecha: new Date().toLocaleString(),
   };
 
-  // Enviar TODOS los datos JUNTOS a Google Sheets
+  // Comunicacion con el google sheets despues de terminar el formulario, en caso que no se termine el test los resultados NO van a aparecer
   try {
     const scriptURL =
       "https://script.google.com/macros/s/AKfycbz1ulYy0Gd9o8Sap19XFBCK0i3Sxyz89IkDo6B-Xvbv6RgN2KcMrYmEEhiECiXGxJsA/exec";
@@ -461,7 +461,7 @@ async function mostrarResultados() {
     });
     const data = await response.json();
     if (data.status === "success") {
-      console.log("✅ Datos completos guardados en Sheets");
+
       // Limpiar sessionStorage después de guardar exitosamente
       sessionStorage.removeItem("datosRegistro");
     }
@@ -537,7 +537,7 @@ async function mostrarResultados() {
           <p>${descripcion}</p>
           <div class="career-actions">
             <a href="${pdfUrl}" target="_blank" class="more-info-link">
-              📄 Más información
+              Click para más información
             </a>
           </div>
         </div>
@@ -546,6 +546,8 @@ async function mostrarResultados() {
     `;
   });
 
+  //Este es el mensaje que se enviara a wasap
+  
   const mensajeWhatsApp = encodeURIComponent(
     `✅¡Estos son mis resultados del test vocacional!:✅\n\nCarreras recomendadas:\n${resultadosOrdenados
       .map((r) => `👉${r.carrera}: ${r.porcentaje}%`)
