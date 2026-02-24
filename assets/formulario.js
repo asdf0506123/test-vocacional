@@ -1,3 +1,5 @@
+//Este script se comunica con el script de google sheets, si se toca algo explota.
+
 const form = document.getElementById("registro");
 const submitButton = document.getElementById("registrar-btn");
 
@@ -16,7 +18,7 @@ form.addEventListener("submit", async function (e) {
       formDataObj[key] = value;
     }
 
-    // GUARDAR DATOS EN SESSIONSTORAGE para usar en el test vocacional
+    // GUARDAR DATOS EN SESSIONSTORAGE
     sessionStorage.setItem('datosRegistro', JSON.stringify({
       nombre: formDataObj.Nombre,
       edad: formDataObj.Edad,
@@ -24,7 +26,6 @@ form.addEventListener("submit", async function (e) {
       telefono: formDataObj.Teléfono
     }));
 
-    console.log('✅ Datos de registro guardados temporalmente');
 
   } catch (error) {
     console.error("Error:", error);
