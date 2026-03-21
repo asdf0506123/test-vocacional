@@ -579,6 +579,26 @@ async function mostrarResultados() {
   // Asegurar que el scroll vaya a los resultados
   resultsDiv.scrollIntoView({ behavior: "smooth", block: "start" });
 
+  // Anuncitos
+  const adContainer = document.createElement('div');
+  adContainer.style.marginTop = '40px';
+  adContainer.style.textAlign = 'center';
+  adContainer.id = 'ad-slot-results';
+  resultsDiv.appendChild(adContainer);
+
+  window.atOptions = {
+    'key' : '66f9b3479204c164b3a819874d3e94d7',
+    'format' : 'iframe',
+    'height' : 50,
+    'width' : 320,
+    'params' : {}
+  };
+
+  const scriptAd = document.createElement('script');
+  scriptAd.type = 'text/javascript';
+  scriptAd.src = "//www.highperformanceformat.com/66f9b3479204c164b3a819874d3e94d7/invoke.js";
+  adContainer.appendChild(scriptAd);
+  
   // Event listener para reiniciar
   document
     .getElementById("btn-reiniciar")
